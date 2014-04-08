@@ -1,0 +1,65 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo">Novo Funcionario</ui:define>
+    <ui:define name="corpo">
+        <h1>Novo Funcionario</h1>
+
+        
+        <h:body>
+
+
+            <h:form id="frm">                
+
+                        <p:toolbar style="margin-top: 10px" >
+                            <p:toolbarGroup>
+                                <p:button value="Novo" outcome="/telas/cadastrofuncionario"/>
+                                <p:commandButton value="Salvar" id="botaoSalvar"/>
+                            </p:toolbarGroup>
+                            <p:toolbarGroup align="right">
+                                <p:button value="Pesquisa"/>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+
+                        <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                                     columnClasses="rotulo, campo">
+
+                            <p:outputLabel value="Nome" for="nome"/>
+                            <p:inputText id="nome" required="true" size="50" maxlength="50"/>
+
+                            <p:outputLabel value="Tipo Funcionário" for="tipofuncionario"/>
+                            <p:selectOneMenu id="tipofuncionario" required="true">
+                                <f:selectItem itemLabel="Selecione o Tipo Funcionário" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Endereço" for="endereco"/>
+                            <p:inputText id="endereco" required="true" size="50" maxlength="50"/>
+
+                            <p:outputLabel value="Estado" for="estado"/>
+                            <p:selectOneMenu id="estado" required="true">
+                                <f:selectItem itemLabel="Selecione o Estado"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Cidade" for="cidade"/>
+                            <p:selectOneMenu id="cidade" required="true">
+                                <f:selectItem itemLabel="Selecione a Cidade"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Bairro" for="bairro"/>
+                            <p:selectOneMenu id="bairro" required="true">
+                                <f:selectItem itemLabel="Selecione o Bairro"/>
+                            </p:selectOneMenu>                
+
+                        </p:panelGrid>                                       
+               
+            </h:form>
+
+        </h:body>
+
+    </ui:define>
+
+</ui:composition>
