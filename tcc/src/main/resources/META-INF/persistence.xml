@@ -5,15 +5,16 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
                             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     
-    <persistence-unit name="sgcePU">
+    <persistence-unit name="SgcePU">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/testando" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/teste" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="mix2314" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-
+                        
+                        <property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 		</properties>
