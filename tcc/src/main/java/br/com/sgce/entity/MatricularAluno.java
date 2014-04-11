@@ -1,21 +1,31 @@
-
 package br.com.sgce.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+@Table(name = "matricular_aluno")
+public class MatricularAluno implements Serializable {
 
-public class MatricularAluno implements Serializable{
-    
     private static final long serialVersionUID = 1L;
-    
     private long id;
-    private List<Aluno> alunos = new ArrayList<>();
-    private List<Serie> series = new ArrayList<>();
-    private List<Turma> turmas = new ArrayList<>();
-    private List<Disciplina> disciplinas = new ArrayList<>();
+    private Date data;
+    private Aluno aluno;
+    private Serie serie;
+    private Turma turma;
+    private Disciplina disciplina;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;
     }
@@ -24,42 +34,57 @@ public class MatricularAluno implements Serializable{
         this.id = id;
     }
 
-    public List<Aluno> getAlunos() {
-        return alunos;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_matricula",nullable = false)
+    public Date getData() {
+        return data;
     }
 
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    
+    @ManyToOne
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public List<Serie> getSeries() {
-        return series;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
-    public void setSeries(List<Serie> series) {
-        this.series = series;
+    @ManyToOne
+    public Serie getSerie() {
+        return serie;
     }
 
-    public List<Turma> getTurmas() {
-        return turmas;
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
+    @ManyToOne
+    public Turma getTurma() {
+        return turma;
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
+    @ManyToOne
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + (int) (this.id ^ (this.id >>> 32));
+        int hash = 5;
+        hash = 79 * hash + (int) (this.id ^ (this.id >>> 32));
         return hash;
     }
 
@@ -77,5 +102,4 @@ public class MatricularAluno implements Serializable{
         }
         return true;
     }
-            
 }

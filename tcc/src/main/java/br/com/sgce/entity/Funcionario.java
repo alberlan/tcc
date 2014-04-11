@@ -3,7 +3,18 @@ package br.com.sgce.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -12,6 +23,8 @@ public class Funcionario implements Serializable {
     private TipoFuncionario tipo;
     private List<Endereco> enderecos = new ArrayList<>();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;
     }
@@ -20,6 +33,7 @@ public class Funcionario implements Serializable {
         this.id = id;
     }
 
+    @Column(length = 45, nullable = false)
     public String getNome() {
         return nome;
     }
@@ -28,6 +42,8 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
     public TipoFuncionario getTipo() {
         return tipo;
     }
@@ -36,6 +52,7 @@ public class Funcionario implements Serializable {
         this.tipo = tipo;
     }
 
+    @OneToMany(mappedBy = "funcionario")
     public List<Endereco> getEnderecos() {
         return enderecos;
     }

@@ -1,21 +1,24 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "disciplina")
 public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    private long id;   
+    private long id;
     private String descricao;
+    private List<MatricularAluno> matricularalnos = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,13 +30,22 @@ public class Disciplina implements Serializable {
         this.id = id;
     }
 
-     
+    @Column(length = 35, nullable = false)
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @OneToMany(mappedBy = "disciplina")
+    public List<MatricularAluno> getMatricularalnos() {
+        return matricularalnos;
+    }
+
+    public void setMatricularalnos(List<MatricularAluno> matricularalnos) {
+        this.matricularalnos = matricularalnos;
     }
 
     @Override

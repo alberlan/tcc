@@ -1,11 +1,14 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,14 +16,13 @@ import javax.persistence.Table;
 public class Turma implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private long id;
+    private String descricao;
+    private String turno;
+    private List<MatricularAluno> matricularalnos = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @Column(length = 35, nullable = false)
-    private String descricao;
-    @Column(length = 1, nullable = false)
-    private String turno;
-
     public long getId() {
         return id;
     }
@@ -29,6 +31,7 @@ public class Turma implements Serializable {
         this.id = id;
     }
 
+    @Column(length = 35, nullable = false)
     public String getDescricao() {
         return descricao;
     }
@@ -37,12 +40,22 @@ public class Turma implements Serializable {
         this.descricao = descricao;
     }
 
+    @Column(length = 1, nullable = false)
     public String getTurno() {
         return turno;
     }
 
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+
+    @OneToMany(mappedBy = "turma")
+    public List<MatricularAluno> getMatricularalnos() {
+        return matricularalnos;
+    }
+
+    public void setMatricularalnos(List<MatricularAluno> matricularalnos) {
+        this.matricularalnos = matricularalnos;
     }
 
     @Override

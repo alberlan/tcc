@@ -1,13 +1,19 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "endereco")
+public class Endereco implements Serializable {
 
-public class Endereco implements Serializable{
-    
     private static final long serialVersionUID = 1L;
-    
     private long id;
     private String logradouro;
     private String numero;
@@ -19,6 +25,8 @@ public class Endereco implements Serializable{
     private Funcionario funcionario;
     private Aluno aluno;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;
     }
@@ -27,6 +35,7 @@ public class Endereco implements Serializable{
         this.id = id;
     }
 
+    @Column(length = 50, nullable = false)
     public String getLogradouro() {
         return logradouro;
     }
@@ -35,6 +44,7 @@ public class Endereco implements Serializable{
         this.logradouro = logradouro;
     }
 
+    @Column(length = 10, nullable = false)
     public String getNumero() {
         return numero;
     }
@@ -43,6 +53,7 @@ public class Endereco implements Serializable{
         this.numero = numero;
     }
 
+    @Column(length = 50)
     public String getComplemento() {
         return complemento;
     }
@@ -51,6 +62,7 @@ public class Endereco implements Serializable{
         this.complemento = complemento;
     }
 
+    @Column(length = 45, nullable = false)
     public String getBairro() {
         return bairro;
     }
@@ -58,7 +70,8 @@ public class Endereco implements Serializable{
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-    
+
+    @Column(length = 25, nullable = false)
     public String getCidade() {
         return cidade;
     }
@@ -67,6 +80,7 @@ public class Endereco implements Serializable{
         this.cidade = cidade;
     }
 
+    @Column(length = 5)
     public String getUf() {
         return uf;
     }
@@ -75,6 +89,7 @@ public class Endereco implements Serializable{
         this.uf = uf;
     }
 
+    @Column(length = 10)
     public String getCep() {
         return cep;
     }
@@ -83,6 +98,7 @@ public class Endereco implements Serializable{
         this.cep = cep;
     }
 
+    @ManyToOne
     public Funcionario getFuncionario() {
         return funcionario;
     }
@@ -91,6 +107,7 @@ public class Endereco implements Serializable{
         this.funcionario = funcionario;
     }
 
+    @ManyToOne
     public Aluno getAluno() {
         return aluno;
     }
@@ -98,8 +115,7 @@ public class Endereco implements Serializable{
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -121,5 +137,4 @@ public class Endereco implements Serializable{
         }
         return true;
     }
-            
 }
