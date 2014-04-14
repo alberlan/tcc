@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "aluno")
@@ -33,6 +34,7 @@ public class Aluno implements Serializable {
         this.id = id;
     }
 
+    @NotBlank
     @Column(length = 45, nullable = false)
     public String getNome() {
         return nome;
@@ -42,6 +44,7 @@ public class Aluno implements Serializable {
         this.nome = nome;
     }
 
+    @NotBlank
     @Column(length = 45, nullable = false)
     public String getResponsavel() {
         return responsavel;
@@ -51,6 +54,7 @@ public class Aluno implements Serializable {
         this.responsavel = responsavel;
     }
 
+    @NotBlank
     @Column(length = 40, nullable = false)
     public String getEmail() {
         return email;
@@ -77,8 +81,7 @@ public class Aluno implements Serializable {
     public void setMatricularalnos(List<MatricularAluno> matricularalnos) {
         this.matricularalnos = matricularalnos;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
