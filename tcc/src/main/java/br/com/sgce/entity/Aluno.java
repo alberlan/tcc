@@ -21,7 +21,7 @@ public class Aluno implements Serializable {
     private String nome;
     private String responsavel;
     private String email;
-    private List<Endereco> enderecos = new ArrayList<>();
+    private Endereco endereco;
     private List<MatricularAluno> matricularalnos = new ArrayList<>();
 
     @Id
@@ -65,12 +65,12 @@ public class Aluno implements Serializable {
     }
 
     @OneToMany(mappedBy = "aluno")
-    public List<Endereco> getEnderecos() {
-        return enderecos;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @OneToMany(mappedBy = "aluno")
