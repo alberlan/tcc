@@ -23,38 +23,45 @@
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-                             columnClasses="rotulo, campo">
+                <p:panelGrid columns="2" style="width: 100%; margin-top: 20px" 
+                             columnClasses="rotulo, campo, rotulo, campo">
+		<p:outputLabel value="Nome" for="nome"/>
+            <p:inputText id="nome" size="50" maxlength="50"/>
 
-                    <p:outputLabel value="Nome" for="nome"/>
-                    <p:inputText id="nome" size="50" maxlength="50"/>
+            <p:outputLabel value="Responsável" for="responsavel"/>
+            <p:inputText id="responsavel" size="50" maxlength="50"/>
 
-                    <p:outputLabel value="Responsável" for="responsavel"/>
-                    <p:inputText id="responsavel" size="50" maxlength="50"/>
-
-                    <p:outputLabel value="E-mail" for="email"/>
-                    <p:inputText id="email" size="50" maxlength="50"/>                
+            <p:outputLabel value="E-mail" for="email"/>
+            <p:inputText id="email" size="45" maxlength="50"/>            
 
 
-                    <p:outputLabel value="Endereço" for="endereco"/>
-                    <p:inputText id="endereco" size="50" maxlength="50"/>     		
+            <p:outputLabel value="Logradouro" for="logradouro"/>
+            <p:inputText id="logradouro" size="45" maxlength="50"/>     
+            
+            <p:outputLabel value="Complemento" for="complemento"/>
+            <p:inputText id="complemento" size="45" maxlength="50"/>     		
 
-                    <p:outputLabel value="Estado" for="estado"/>
-                    <p:selectOneMenu id="estado">
-                        <f:selectItem itemLabel="Selecione o Estado"/>
-                    </p:selectOneMenu> 
+            <p:outputLabel value="Numero" for="numero"/>
+            <p:inputText id="numero" size="10" maxlength="50"/>
+            
+            <p:outputLabel value="Cep" for="cep"/>
+            <p:inputMask  mask="99999-999" id="cep" size="10" maxlength="50"/> 
+            
+            <p:outputLabel value="Bairro" for="bairro"/>
+            <p:inputText id="bairro" size="25" maxlength="25"/> 
+            
+            <p:outputLabel value="Cidade" for="cidade"/>
+            <p:inputText id="cidade" size="25" maxlength="25"/> 
+            
+            <p:outputLabel value="UF" for="uf"/>
+            <p:inputText id="uf" size="5" maxlength="50"/>                  
 
-                    <p:outputLabel value="Cidade" for="cidade"/>
-                    <p:selectOneMenu id="cidade">
-                        <f:selectItem itemLabel="Selecione a Cidade"/>
-                    </p:selectOneMenu>                
-
-                    <p:outputLabel value="Bairro" for="bairro"/>
-                    <p:selectOneMenu id="bairro">
-                        <f:selectItem itemLabel="Selecione o Bairro"/>
-                    </p:selectOneMenu>
-
-                </p:panelGrid>                 
+            
+            
+            
+            
+                           
+	</p:panelGrid>  	        
 
             </h:form>
 

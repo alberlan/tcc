@@ -18,7 +18,7 @@
 
 
                     <p:commandButton value="Salvar" id="botaoSalvar"
-                                     update="@form"/>
+                                     action="#{disciplinaBean.salvar()}" update="@form"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:button value="Pesquisa"/>
@@ -29,8 +29,8 @@
                          columnClasses="rotulo, campo">
 
                 <p:outputLabel value="Descrição" for="descricao"/>
-                <p:inputText id="descricao" size="35" maxlength="40" value="#{disciplinaBean.disciplina.descricao}"
-                             required="true" requiredMessage="O campo é Obrigatorio" />
+                <p:inputText id="descricao" size="35" maxlength="40" 
+                             value="#{disciplinaBean.disciplina.descricao}" />
 
 
             </p:panelGrid>

@@ -33,7 +33,6 @@ public class Disciplina implements Serializable {
     }
 
     @NotBlank
-    @Size(max = 10)
     @Column(length = 35, nullable = false)
     public String getDescricao() {
         return descricao;
