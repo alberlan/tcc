@@ -1,0 +1,89 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="titulo">Novo Aluno</ui:define>
+    <ui:define name="corpo">      
+
+        <h:form>
+
+            <h1>Novo Aluno</h1>
+            <p:growl autoUpdate="true"/>
+
+            <p:toolbar style="margin-top: 10px">
+                <p:toolbarGroup>
+                    <p:button value="Novo" outcome="/telas-sistema/telas-cadastros/cadastraraluno"/>
+                    <p:commandButton value="Salvar" id="botaoSalvar" 
+                                     action="#{alunoBean.salvar()}" update="@form"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:button value="Pesquisa"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:panelGrid columns="2" style="width: 100%; margin-top: 20px" 
+                         columnClasses="rotulo, campo, rotulo, campo" >
+
+                <p:outputLabel value="Nome" for="nome"/>
+                <p:inputText id="nome" size="47" maxlength="47" 
+                             value="#{alunoBean.aluno.nome}"/>
+
+                <p:outputLabel value="Responsável" for="responsavel"/>
+                <p:inputText id="responsavel" size="47" maxlength="47" 
+                             value="#{alunoBean.aluno.responsavel}"/>
+
+                <p:outputLabel value="E-mail" for="email"/>
+                <p:inputText id="email" size="45" maxlength="50" 
+                             value="#{alunoBean.aluno.email}"/> 
+
+                <p:outputLabel value="CPF" for="cpf"/>
+                <p:inputMask  mask="999.999.999-99" id="cpf" size="15" maxlength="15"
+                              value="#{alunoBean.aluno.cpf}"/>  
+                
+                <p:outputLabel value="Tel.Celular" for="celular"/>
+                <p:inputMask  mask="(999)9999-9999" id="celular" size="13" maxlength="13"
+                              value="#{alunoBean.aluno.telefone.celular}"/>  
+                
+                <p:outputLabel value="Tel.Convencional" for="convencional"/>
+                <p:inputMask  mask="(999)9999-9999" id="convencional" size="13" maxlength="13"
+                              value="#{alunoBean.aluno.telefone.convencional}"/>                  
+
+                <p:outputLabel value="Estado" for="estado"/>
+                <p:inputText id="estado" size="25" maxlength="25"
+                             value="#{alunoBean.aluno.endereco.estado.descricao}"/> 
+
+                <p:outputLabel value="Cidade" for="cidade"/>
+                <p:inputText id="cidade" size="25" maxlength="25"
+                             value="#{alunoBean.aluno.endereco.cidade.descricao}"/>  
+
+                <p:outputLabel value="Bairro" for="bairro"/>
+                <p:inputText id="bairro" size="25" maxlength="25"
+                             value="#{alunoBean.aluno.endereco.bairro}"/> 
+
+                <p:outputLabel value="Logradouro" for="logradouro"/>
+                <p:inputText id="logradouro" size="45" maxlength="47"
+                             value="#{alunoBean.aluno.endereco.logradouro}"/>     
+
+                <p:outputLabel value="Complemento" for="complemento"/>
+                <p:inputText id="complemento" size="45" maxlength="47" 
+                             value="#{alunoBean.aluno.endereco.complemento}"/>       		
+
+                <p:outputLabel value="Numero" for="numero"/>
+                <p:inputText id="numero" size="10" maxlength="10" 
+                             value="#{alunoBean.aluno.endereco.numero}"/>     
+
+                <p:outputLabel value="Cep" for="cep"/>
+                <p:inputMask  mask="99999-999" id="cep" size="10" maxlength="12" 
+                              value="#{alunoBean.aluno.endereco.cep}"/>    
+
+            </p:panelGrid>  	        
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

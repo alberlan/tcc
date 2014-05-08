@@ -1,31 +1,39 @@
+
 package br.com.sgce.repository;
 
-import br.com.sgce.entity.Disciplina;
+import br.com.sgce.entity.Turma;
 import java.io.Serializable;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 
-public class Disciplinas implements Serializable {
 
+public class TurmaRepository implements Serializable{
+    
     private static final long serialVersionUID = 1L;
     @Inject
     private EntityManager manager;
 
-    public Disciplina guardar(Disciplina disciplina) {
+    public Turma guardar(Turma turma) {
 
-        return manager.merge(disciplina);
+        return manager.merge(turma);
 
     }
 
-    public Disciplina porDescricao(String descricao) {
+    public Turma porDescricao(String descricao) {
         try {
-            return manager.createQuery("from Disciplina where upper(descricao) = :descricao", Disciplina.class)
+            return manager.createQuery("from Turma where upper(descricao) = :descricao", Turma.class)
                     .setParameter("descricao", descricao.toUpperCase())
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
+    
+    public List<Turma> buscarTurma(){        
+        return manager.createQuery("from Turma" , Turma.class).getResultList();
+        
+    }  
+    
 }

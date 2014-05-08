@@ -7,35 +7,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "matricular_aluno")
 public class MatricularAluno implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private long id;
+    private Long id;
     private Date data;
     private Aluno aluno;
-    private Serie serie;
     private Turma turma;
-    private Disciplina disciplina;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data_matricula",nullable = false)
+    @Column(name = "data_matricula", nullable = false)
     public Date getData() {
         return data;
     }
@@ -43,9 +43,9 @@ public class MatricularAluno implements Serializable {
     public void setData(Date data) {
         this.data = data;
     }
+
+    //adicionei agora 21-04
     
-    
-    @ManyToOne
     public Aluno getAluno() {
         return aluno;
     }
@@ -54,16 +54,7 @@ public class MatricularAluno implements Serializable {
         this.aluno = aluno;
     }
 
-    @ManyToOne
-    public Serie getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Serie serie) {
-        this.serie = serie;
-    }
-
-    @ManyToOne
+    
     public Turma getTurma() {
         return turma;
     }
@@ -72,13 +63,14 @@ public class MatricularAluno implements Serializable {
         this.turma = turma;
     }
 
-    @ManyToOne
-    public Disciplina getDisciplina() {
-        return disciplina;
+    @Transient
+    public boolean isNovo() {
+        return getId() == null;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    @Transient
+    public boolean isExistente() {
+        return !isNovo();
     }
 
     @Override

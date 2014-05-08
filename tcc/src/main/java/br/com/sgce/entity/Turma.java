@@ -3,13 +3,17 @@ package br.com.sgce.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "turma")
@@ -17,9 +21,11 @@ public class Turma implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private long id;
+    private String serie;
     private String descricao;
     private String turno;
-    private List<MatricularAluno> matricularalnos = new ArrayList<>();
+  //  private List<Disciplina> disciplinas = new ArrayList<>();
+ //   private List<MatricularAluno> matricularalnos = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +37,17 @@ public class Turma implements Serializable {
         this.id = id;
     }
 
+    @NotBlank
+    @Column(length = 35, nullable = false)
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    @NotBlank
     @Column(length = 35, nullable = false)
     public String getDescricao() {
         return descricao;
@@ -40,6 +57,7 @@ public class Turma implements Serializable {
         this.descricao = descricao;
     }
 
+    @NotBlank
     @Column(length = 1, nullable = false)
     public String getTurno() {
         return turno;
@@ -49,7 +67,14 @@ public class Turma implements Serializable {
         this.turno = turno;
     }
 
-    @OneToMany(mappedBy = "turma")
+ /*   public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
     public List<MatricularAluno> getMatricularalnos() {
         return matricularalnos;
     }
@@ -57,7 +82,7 @@ public class Turma implements Serializable {
     public void setMatricularalnos(List<MatricularAluno> matricularalnos) {
         this.matricularalnos = matricularalnos;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 5;

@@ -5,6 +5,13 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
+    <f:metadata>        
+
+        <f:event listener="#{turmaBean.inicializarDisciplina()}" type="preRenderView"/>    
+
+    </f:metadata>        
+
+
     <ui:define name="titulo">Nova Turma</ui:define>
     <ui:define name="corpo">
         <h:form>
@@ -21,8 +28,8 @@
 
             <p:toolbar style="margin-top: 10px">
                 <p:toolbarGroup>
-                    <p:button value="Novo" outcome="/telas/turma"/>
-                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{turmaBean.cadastrar()}"
+                    <p:button value="Novo" outcome="/telas-sistema/telas-cadastros/cadastrarturma"/>
+                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{turmaBean.salvar()}"
                                      update="@form"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
@@ -31,19 +38,29 @@
             </p:toolbar>
 
             <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-                         columnClasses="rotulo, campo">
+                         columnClasses="rotulo, campo">                
 
                 <p:outputLabel value="Descrição" for="descricao"/>
-                <p:inputText id="descricao" size="30" maxlength="30" value="#{turmaBean.turma.descricao}"
-                             required="true" requiredMessage="O campo é Obrigatório"/>
+                <p:inputText id="descricao" size="30" maxlength="30" value="#{turmaBean.turma.descricao}"/>
+
+                <p:outputLabel value="Serie" for="serie"/>
+                <p:inputText id="serie" size="10" maxlength="10" value="#{turmaBean.turma.serie}"/>
+
 
                 <p:outputLabel value="Turno" for="turno"/>         
-                <p:selectOneRadio value="#{turmaBean.turma.turno}" id="turno" required="true" styleClass="sem-bordas"
-                                  rendered="true" requiredMessage="O Campo é Obrigatório">                 
+                <p:selectOneRadio value="#{turmaBean.turma.turno}" id="turno" styleClass="sem-bordas" >                                                   
                     <f:selectItem itemValue="M" itemLabel="Matutino"  />  
                     <f:selectItem itemValue="V" itemLabel="Vespertino"  />  
                     <f:selectItem itemValue="N" itemLabel="Noturno"  />  
                 </p:selectOneRadio> 
+
+                <p:outputLabel value="Disciplina"/>
+                <p:selectCheckboxMenu  label="Disciplinas" filter="true" 
+                                       filterMatchMode="startsWith" panelStyle="width:220px">
+                    <f:selectItems value="#{turmaBean.disciplinaAlunos}" var="disciplina"
+                                   itemValue="#{disciplina}" itemLabel="#{disciplina.descricao}"/>
+                </p:selectCheckboxMenu>   
+
 
             </p:panelGrid>
         </h:form>        

@@ -36,38 +36,45 @@
                 <h:form style="display: inline-block">
                     <p:menubar styleClass="menu-sistema">
                         <p:submenu label="Cadastros">
-                            <p:menuitem value="Aluno" outcome="/telas/cadastroaluno" />
-                            <p:menuitem value="Funcionário" outcome="/telas/cadastrofuncionario" />
-                            <p:menuitem value="Turma" outcome="/telas/turma"/>
-                            <p:menuitem value="Disciplina" outcome="/telas/disciplina"/>
-                            <p:menuitem value="Série" outcome="/telas/serie"/>   
-                            
+                            <p:menuitem value="Aluno" outcome="/telas-sistema/telas-cadastros/cadastraraluno" />
+                            <p:menuitem value="Funcionário" outcome="/telas-sistema/telas-cadastros/cadastrarfuncionario" />
+                            <p:menuitem value="Turma" outcome="/telas-sistema/telas-cadastros/cadastrarturma"/>
+                            <p:menuitem value="Disciplina" outcome="/telas-sistema/telas-cadastros/cadastrardisciplina"/>
+                            <p:menuitem value="Bimestre" outcome="/telas-sistema/telas-cadastros/cadastrarbimestre"/>   
+
                             <p:separator/>                            
-                                                         
-                            
+
+
                         </p:submenu>
-                        
+
                         <p:submenu label="Professor">
-                            <p:menuitem value="Abrir Aula" outcome="/telas/cadastroaluno" />
-                            <p:menuitem value="Pesquisa" outcome="/telas/cadastroaluno" />
+                            <p:menuitem value="Abrir Aula" outcome="/telas-sistema/professor/abriraula" />
+                            <p:menuitem value="Fechar Aula" outcome="/telas-sistema/professor/fecharaula" />
+                            <p:menuitem value="Lançar Nota" outcome="/telas-sistema/professor/lancarnota" />
                         </p:submenu>
-                        
+
                         <p:submenu label="Gerenciar">
-                            <p:menuitem value="Controle de Acesso" outcome="/telas/controledeacesso" />
-                            <p:menuitem value="Alocar Professor" outcome="/telas/alocarprofessor" />
-                            <p:menuitem value="Matricular Aluno" outcome="/telas/matricularaluno" />
+                            <p:menuitem value="Controle de Acesso" outcome="/telas-sistema/telas-gerenciamento/controledeacesso" />
+                            <p:menuitem value="Alocar Professor" outcome="/telas-sistema/telas-gerenciamento/alocarprofessor" />
+                            <p:menuitem value="Matricular Aluno" outcome="/telas-sistema/telas-gerenciamento/matricularaluno" />
                         </p:submenu>
-                        
+
+                        <p:submenu label="Pesquisas">
+                            <p:menuitem value="Aluno" outcome="/telas-sistema/telas-pesquisa/pesquisaraluno" />
+                            <p:menuitem value="Disciplina" outcome="/telas-sistema/telas-pesquisa/pesquisadisciplina" />
+                            <p:menuitem value="Matricular Aluno" outcome="/telas-sistema/telas-gerenciamento/matricularaluno" />
+                        </p:submenu>
+
                         <p:submenu label="Relatórios">
-                            <p:menuitem value="" outcome="/telas/cadastroaluno" />
-                            <p:menuitem value="Pesquisa" outcome="/telas/cadastroaluno" />
+                            <p:menuitem value="Boletim" outcome="/telas-sistema/relatorios/boletim" />
+                            <p:menuitem value="Histórico Escolar" outcome="/telas-sistema/relatorios/historico" />
                         </p:submenu>
-                        
+
                         <p:menuitem value="Sair" />
                     </p:menubar>
                 </h:form>
             </div>
-            
+
             <div style="clear: both"></div>
 
         </header>

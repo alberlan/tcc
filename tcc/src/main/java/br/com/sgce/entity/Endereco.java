@@ -1,13 +1,19 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "endereco")
@@ -19,11 +25,10 @@ public class Endereco implements Serializable {
     private String numero;
     private String complemento;
     private String bairro;
-    private String cidade;
-    private String uf;
     private String cep;
-    private Funcionario funcionario;
     private Aluno aluno;
+    private Estado estado = new Estado();
+    private Cidade cidade = new Cidade();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +40,7 @@ public class Endereco implements Serializable {
         this.id = id;
     }
 
+    @NotBlank
     @Column(length = 50, nullable = false)
     public String getLogradouro() {
         return logradouro;
@@ -44,6 +50,7 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
+    @NotBlank
     @Column(length = 10, nullable = false)
     public String getNumero() {
         return numero;
@@ -53,6 +60,7 @@ public class Endereco implements Serializable {
         this.numero = numero;
     }
 
+    @NotBlank
     @Column(length = 50)
     public String getComplemento() {
         return complemento;
@@ -62,6 +70,7 @@ public class Endereco implements Serializable {
         this.complemento = complemento;
     }
 
+    @NotBlank
     @Column(length = 45, nullable = false)
     public String getBairro() {
         return bairro;
@@ -71,24 +80,7 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    @Column(length = 25, nullable = false)
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    @Column(length = 5)
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
+    @NotBlank
     @Column(length = 10)
     public String getCep() {
         return cep;
@@ -98,22 +90,37 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
-    @ManyToOne
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    @ManyToOne
+    
+    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoEndereco")    
     public Aluno getAluno() {
         return aluno;
     }
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+  
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ForeignKey(name = "EnderecoEstado")
+    @JoinColumn(name = "estado_id", referencedColumnName = "id", nullable = false)
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ForeignKey(name = "EnderecoCidade")
+    @JoinColumn(name = "cidade_id", referencedColumnName = "id", nullable = false)
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     @Override

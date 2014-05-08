@@ -1,0 +1,50 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo">Pesquisa de Disciplina</ui:define>
+
+    <ui:define name="corpo">
+        <h:form>
+            <h1>Pesquisa de Disciplina</h1>
+
+            <p:toolbar style="margin-top: 20px">
+                <p:toolbarGroup>
+                    <p:commandButton value="Pesquisar" action="#{pesquisaDisciplinaBean.pesquisar()}" 
+                                     update="@form"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:button value="Novo" />
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                         columnClasses="rotulo, campo">
+
+                <p:outputLabel value="Disciplina" />
+                <p:inputText size="40" value="#{pesquisaDisciplinaBean.filtro.descricao}"/> 
+
+            </p:panelGrid>
+
+            <p:dataTable id="alunosTable" value="#{pesquisaDisciplinaBean.disciplinasfiltradas}" var="disciplina" 
+                         style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado."
+                         rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+                <p:column headerText="Código" style="text-align: center; width: 5px">
+                    <h:outputText value="#{disciplina.id}"/>
+                </p:column>
+
+                <p:column headerText="Disciplina" style="text-align: center; width: 160px">
+                    <h:outputText value="#{disciplina.descricao}" />  
+                </p:column>
+
+                <p:column style="text-align: center; width: 30px">
+                    <p:button icon="ui-icon-pencil" title="Editar"/>
+                </p:column>
+            </p:dataTable>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

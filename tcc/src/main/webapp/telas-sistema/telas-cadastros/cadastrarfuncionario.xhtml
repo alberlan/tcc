@@ -1,0 +1,87 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo">Novo Funcionario</ui:define>
+    <ui:define name="corpo">             
+
+        <h:form>    
+
+            <h1>Novo Funcionario</h1>
+            <p:growl autoUpdate="true"/>
+
+            <p:toolbar style="margin-top: 10px" >
+                <p:toolbarGroup>
+                    <p:button value="Novo" outcome="/telas-sistema/telas-cadastros/cadastrarfuncionario"/>
+                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{funcionarioBean.salvar()}"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:button value="Pesquisa"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                         columnClasses="rotulo, campo">
+
+                <p:outputLabel value="Nome" for="nome"/>
+                <p:inputText id="nome" size="50" maxlength="50" 
+                             />
+
+                <p:outputLabel value="E-mail" for="email"/>
+                <p:inputText id="email" size="45" maxlength="50" 
+                             />  
+                
+                <p:outputLabel value="Tel.Celular" for="celular"/>
+                <p:inputMask  mask="(999)9999-9999" id="celular" size="14" maxlength="14"
+                              />  
+                
+                <p:outputLabel value="Tel.Convencional" for="convencional"/>
+                <p:inputMask  mask="(999)9999-9999" id="convencional" size="14" maxlength="14"
+                             />      
+
+                <p:outputLabel value="Tipo Funcionário" for="tipofuncionario"/>
+                <p:selectOneMenu id="tipofuncionario" required="true">
+                    <f:selectItem itemLabel="Selecione o Tipo Funcionário" />
+                    <f:selectItems value="#{funcionarioBean.tiposFuncionario}"
+                                   var="tipofuncionario" itemValue="#{tipofuncionario}"
+                                   itemLabel="#{tipofuncionario.descricao}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Estado" for="estado"/>
+                <p:inputText id="estado" size="25" maxlength="25"
+                             /> 
+
+                <p:outputLabel value="Cidade" for="cidade"/>
+                <p:inputText id="cidade" size="25" maxlength="25"
+                             />  
+
+                <p:outputLabel value="Bairro" for="bairro"/>
+                <p:inputText id="bairro" size="25" maxlength="25"
+                             /> 
+
+                <p:outputLabel value="Logradouro" for="logradouro"/>
+                <p:inputText id="logradouro" size="45" maxlength="47"
+                             />     
+
+                <p:outputLabel value="Complemento" for="complemento"/>
+                <p:inputText id="complemento" size="45" maxlength="47" 
+                             />       		
+
+                <p:outputLabel value="Numero" for="numero"/>
+                <p:inputText id="numero" size="10" maxlength="10" 
+                             />     
+
+                <p:outputLabel value="Cep" for="cep"/>
+                <p:inputMask  mask="99999-999" id="cep" size="10" maxlength="12" 
+                              />    
+
+            </p:panelGrid>  	                                       
+
+        </h:form>        
+
+    </ui:define>
+
+</ui:composition>

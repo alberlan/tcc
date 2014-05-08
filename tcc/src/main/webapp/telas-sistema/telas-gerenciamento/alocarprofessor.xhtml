@@ -5,13 +5,13 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Matricular Aluno</ui:define>
+    <ui:define name="titulo">Alocar Professor</ui:define>
     <ui:define name="corpo">
-        <h1>Matricular Aluno</h1>
+        <h1>Alocar Professor</h1>
 
         <p:toolbar style="margin-top: 10px">
             <p:toolbarGroup>
-                <p:button value="Novo" outcome="/telas/matricularaluno"/>
+                <p:button value="Novo" outcome="/telas-sistema/telas-gerenciamento/alocarprofessor"/>
                 <p:commandButton value="Salvar" id="botaoSalvar"/>
             </p:toolbarGroup>
             <p:toolbarGroup align="right">
@@ -22,21 +22,23 @@
         <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
                      columnClasses="rotulo, campo">
 
-            <p:outputLabel value="Aluno" for="aluno"/>
-            <p:autoComplete id="aluno" value="" required="true" completeMethod="ttrtr" 
-                            forceSelection="true" dropdown="true"/>  
+            <p:outputLabel value="Professor" for="professor"/>
+            <p:autoComplete id="professor" value="" required="true" completeMethod="trtr" 
+                            forceSelection="true" dropdown="true"/>         
 
             <p:outputLabel value="Série" for="serie"/>
             <p:autoComplete id="serie" value="" required="true" completeMethod="ttrtr" 
-                            forceSelection="true" dropdown="true"/> 
+                            forceSelection="true" dropdown="true"/>  
 
-            <p:outputLabel value="Turma" for="turma"/>
+            <p:outputLabel value="Turma" for="turma"/>                            
             <p:autoComplete id="turma" value="" required="true" completeMethod="ttrtr" 
-                            forceSelection="true" dropdown="true"/> 
+                            forceSelection="true" dropdown="true"/>  
 
-            <p:outputLabel value="Disciplina" for="disciplina"/>
-            <p:autoComplete id="disciplina" value="" required="true" completeMethod="ttrtr" 
-                            forceSelection="true" dropdown="true"/>           
+            <p:outputLabel value="Disciplina"/>
+            <p:selectCheckboxMenu  label="Disciplinas" filter="true" 
+                                   filterMatchMode="startsWith" panelStyle="width:220px">
+                <f:selectItems />
+            </p:selectCheckboxMenu>   
 
 
         </p:panelGrid>

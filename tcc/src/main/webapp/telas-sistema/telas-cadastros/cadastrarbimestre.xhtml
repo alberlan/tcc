@@ -5,17 +5,17 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Nova Série</ui:define>
+    <ui:define name="titulo">Novo Bimestre</ui:define>
     <ui:define name="corpo">
         <h:form>
-        <h1>Nova Série</h1>
+        <h1>Novo Bimestre</h1>
         
         <p:growl autoUpdate="true"/>
 
         <p:toolbar style="margin-top: 10px">
             <p:toolbarGroup>
-                <p:button value="Novo" outcome="/telas/serie"/>
-                <p:commandButton value="Salvar" id="botaoSalvar" action="#{serieBean.cadastrar()}" 
+                <p:button value="Novo" outcome="/telas-sistema/telas-cadastros/cadastrarbimestre"/>
+                <p:commandButton value="Salvar" id="botaoSalvar"  
                                  update="@form"/>
             </p:toolbarGroup>
             <p:toolbarGroup align="right">
@@ -27,8 +27,18 @@
                      columnClasses="rotulo, campo">
 
             <p:outputLabel value="Descrição" for="descricao"/>
-            <p:inputText id="descricao" size="25" maxlength="25" value="#{serieBean.serie.descricao}"
-                         required="true" requiredMessage="O campo é Obrigatorio" />
+            <p:inputText id="descricao" size="4" maxlength="5" 
+                         onkeyup="this.value = this.value.toUpperCase();"/>
+            
+            <p:outputLabel value="Data Incicio" for="datainicio"/>
+            <p:calendar id="datainicio"  effect="explode" size="8"/>
+                         
+            <p:outputLabel value="Data Final" for="datafinal"/>
+            <p:calendar id="datafinal"  effect="explode" size="8"/>
+                         
+            
+                
+                         
           
 
         </p:panelGrid>

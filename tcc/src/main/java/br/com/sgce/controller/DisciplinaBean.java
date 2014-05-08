@@ -15,30 +15,24 @@ public class DisciplinaBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
-   private DisciplinaService disciplinaService;
+    private DisciplinaService disciplinaService;
     private Disciplina disciplina;
 
     public DisciplinaBean() {
         limpar();
     }
-    
-    public void limpar(){
+
+    public void limpar() {
         disciplina = new Disciplina();
     }
-    
+
     public void salvar() {
         this.disciplina = disciplinaService.salvar(this.disciplina);
         FacesUtil.addInfoMessage("Disciplina Salva com Sucesso!");
         limpar();
     }
 
-    //public CadastroDisciplinaService getCadastroDisciplinaService() {
-      //  return cadastroDisciplinaService;
-    //}
-
     public Disciplina getDisciplina() {
         return disciplina;
     }
-        
-    
 }
