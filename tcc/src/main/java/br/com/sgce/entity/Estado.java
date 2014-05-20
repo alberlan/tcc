@@ -1,6 +1,7 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
@@ -20,17 +22,18 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private int id;
     private String descricao;
-    private List<Endereco> enderecos;
+    private List<Cidade> cidades;
+    private List<Aluno> alunos = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,15 +47,24 @@ public class Estado implements Serializable {
         this.descricao = descricao;
     }
 
-   
-    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ForeignKey(name = "EnderecoEstado")
-    public List<Endereco> getEnderecos() {
-        return enderecos;
+    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
+    @ForeignKey(name = "EstadoCidade")
+    public List<Cidade> getCidades() {
+        return cidades;
     }
 
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
+    public void setCidades(List<Cidade> cidades) {
+        this.cidades = cidades;
+    }
+
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoEstado")
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
 
     @Override

@@ -15,8 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.NotBlank;
 
-@Entity
-@Table(name = "telefone")
+
 public class Telefone implements Serializable {
 
     private static final long serialVersionUID = 1L;

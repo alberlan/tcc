@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -23,22 +24,24 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Aluno implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private int id;
     private String nome;
     private String responsavel;
     private String email;
     private String cpf;
-    private Endereco endereco = new Endereco();
-    private Telefone telefone = new Telefone();
+    private String telefoneCelular;
+    private String telefoneConvencional;
+    private String endereco;
+    private Estado estado;
+  
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -82,30 +85,43 @@ public class Aluno implements Serializable {
         this.cpf = cpf;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id", nullable = false)
-    @ForeignKey(name = "AlunoEndereco")
-    public Endereco getEndereco() {
+    public String getTelefoneCelular() {
+        return telefoneCelular;
+    }
+
+    public void setTelefoneCelular(String telefoneCelular) {
+        this.telefoneCelular = telefoneCelular;
+    }
+
+    public String getTelefoneConvencional() {
+        return telefoneConvencional;
+    }
+
+    public void setTelefoneConvencional(String telefoneConvencional) {
+        this.telefoneConvencional = telefoneConvencional;
+    }
+
+    public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "telefone_id", referencedColumnName = "id", nullable = false)
-    @ForeignKey(name = "AlunoTelefone")
-    public Telefone getTelefone() {
-        return telefone;
+    @ManyToOne
+    @ForeignKey(name = "AlunoEstado")
+    @JoinColumn(name = "estado_id", nullable = false)
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
-
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
-   
 
+
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -113,6 +129,7 @@ public class Aluno implements Serializable {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -127,6 +144,4 @@ public class Aluno implements Serializable {
         }
         return true;
     }
-
-        
 }

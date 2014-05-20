@@ -1,6 +1,7 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -10,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
@@ -20,17 +23,18 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Cidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private int id;
     private String descricao;
-    private List<Endereco> enderecos;
+    private Estado estado = new Estado();
+  //  private List<Aluno> alunos;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,17 +47,30 @@ public class Cidade implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ForeignKey(name = "EstadoCidade")
+    @JoinColumn(name = "estado_id", nullable = false)
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
     
-    @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ForeignKey(name = "EnderecoCidade")
-    public List<Endereco> getEnderecos() {
-        return enderecos;
+    
+  /*  @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoCidade")
+    
+    public List<Aluno> getAlunos() {
+        return alunos;
     }
 
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 5;
