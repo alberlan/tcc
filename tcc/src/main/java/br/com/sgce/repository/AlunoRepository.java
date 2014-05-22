@@ -25,7 +25,8 @@ public class AlunoRepository implements Serializable {
     private EntityManager manager;
 
     
-    public Aluno guardar(Aluno aluno) {        
+    public Aluno guardar(Aluno aluno) {
+        
            
         return manager.merge(aluno);
     }

@@ -16,29 +16,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
-import org.hibernate.validator.constraints.NotBlank;
+
 
 @Entity
 @Table(name = "cidade")
 public class Cidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int id;
+    private Long id;
     private String descricao;
     private Estado estado = new Estado();
   //  private List<Aluno> alunos;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @NotBlank
+    
     @Column(name = "descricao", length = 30, nullable = false)
     public String getDescricao() {
         return descricao;
@@ -58,23 +58,20 @@ public class Cidade implements Serializable {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-    
-    
-  /*  @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ForeignKey(name = "AlunoCidade")
-    
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
 
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
+    /*  @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoCidade")
+    public List<Aluno> getAlunos() {
+    return alunos;
     }
-*/
+    public void setAlunos(List<Aluno> alunos) {
+    this.alunos = alunos;
+    }
+     */
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -92,4 +89,5 @@ public class Cidade implements Serializable {
         }
         return true;
     }
+    
 }

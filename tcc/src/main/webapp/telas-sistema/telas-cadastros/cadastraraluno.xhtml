@@ -5,16 +5,13 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <f:metadata>        
-        <f:event listener="#{alunoBean.inicializarCidade()}" type="preRenderView"/>    
-        <f:event listener="#{alunoBean.inicializarEstado()}" type="preRenderView"/>    
-
-    </f:metadata>    
-
-
-
     <ui:define name="titulo">Novo Aluno</ui:define>
     <ui:define name="corpo">      
+
+        <f:metadata>              
+            <f:event listener="#{alunoBean.inicializarCidade()}" type="preRenderView"/>    
+            <f:event listener="#{alunoBean.inicializarEstado()}" type="preRenderView"/>  
+        </f:metadata>    
 
         <h:form>
 
@@ -61,17 +58,18 @@
 
 
                 <p:outputLabel value="Estado" for="estado"/>
-                <p:selectOneMenu id="estado">
+                <p:selectOneMenu id="estado" value="#{alunoBean.aluno.estado}">
                     <f:selectItem itemLabel="Selecione o Estado"/>
                     <f:selectItems value="#{alunoBean.alunoEstados}" var="estado"
                                    itemValue="#{estado}" itemLabel="#{estado.descricao}" />
+                    <p:ajax event="change" process="@this" listener="#{alunoBean.carregarCidades}" update="cidade"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Cidade" for="cidade"/>
-                <p:selectOneMenu id="cidade">
+                <p:selectOneMenu id="cidade" >
                     <f:selectItem itemLabel="Selecione a Cidade"/>
                     <f:selectItems value="#{alunoBean.alunoCidades}" var="cidade"
-                                   itemValue="#{cidade}" itemLabel="#{cidade.descricao}" />
+                                   itemValue="#{cidade}" itemLabel="#{cidade.descricao}" />                    
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Complemento" for="complemento"/>

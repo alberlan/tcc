@@ -15,6 +15,7 @@ import java.util.List;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.naming.ldap.ManageReferralControl;
 
 @Named
 @ViewScoped
@@ -24,7 +25,7 @@ public class AlunoBean implements Serializable {
     @Inject
     private CidadeRepository cidades;
     @Inject
-    private EstadoRepository estados;
+    private EstadoRepository estadoRepository;
     @Inject
     private EstadoService estadoService;
     @Inject
@@ -44,15 +45,21 @@ public class AlunoBean implements Serializable {
     }
 
     public void salvar() {
-        this.aluno.setEstado(estado);
-        this.aluno = alunoService.salvar(this.aluno);        
-
+        this.aluno = alunoService.salvar(this.aluno);
         FacesUtil.addInfoMessage("Aluno Salvo com Sucesso!");
         limpar();
     }
+    
+    public void carregarCidades(){
+       
+        
+    }
 
     public void inicializarEstado() {
-        alunoEstados = estados.buscarEstado();
+
+        if (FacesUtil.isNotPostback()) {
+            alunoEstados = estadoRepository.buscarEstado();
+        }
     }
 
     public void inicializarCidade() {
@@ -62,6 +69,14 @@ public class AlunoBean implements Serializable {
     public Aluno getAluno() {
         return aluno;
 
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     public List<Cidade> getAlunoCidades() {

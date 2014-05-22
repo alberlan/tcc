@@ -15,29 +15,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "estado")
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int id;
+    private Long id;
     private String descricao;
     private List<Cidade> cidades;
     private List<Aluno> alunos = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @NotBlank
     @Column(name = "descricao", length = 30, nullable = false)
     public String getDescricao() {
         return descricao;
@@ -69,8 +67,8 @@ public class Estado implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
