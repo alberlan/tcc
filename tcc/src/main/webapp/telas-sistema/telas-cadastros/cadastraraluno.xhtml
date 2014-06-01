@@ -70,10 +70,13 @@
                                    itemValue="#{cidade}" itemLabel="#{cidade.descricao}" />                    
                 </p:selectOneMenu>
 
-
+                <p:outputLabel value="Endereço" for="endereco"/>
+                <p:inputText id="endereco" size="45" maxlength="47" 
+                             value="#{alunoBean.aluno.endereco}"/>      
+                
                 <p:outputLabel value="Complemento" for="complemento"/>
                 <p:inputText id="complemento" size="45" maxlength="47" 
-                             value="#{alunoBean.aluno.endereco}"/>       		
+                             value="#{alunoBean.aluno.complemento}"/>       		
             </p:panelGrid>  	        
 
         </h:form>

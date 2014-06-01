@@ -5,17 +5,14 @@ import br.com.sgce.entity.Cidade;
 import br.com.sgce.entity.Estado;
 import br.com.sgce.repository.CidadeRepository;
 import br.com.sgce.repository.EstadoRepository;
-import br.com.sgce.repository.TurmaRepository;
 import br.com.sgce.service.AlunoService;
-import br.com.sgce.service.CidadeService;
-import br.com.sgce.service.EstadoService;
 import br.com.sgce.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.naming.ldap.ManageReferralControl;
+
 
 @Named
 @ViewScoped
@@ -23,11 +20,9 @@ public class AlunoBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
-    private CidadeRepository cidades;
+    private CidadeRepository cidadeReoRepository;
     @Inject
     private EstadoRepository estadoRepository;
-    @Inject
-    private EstadoService estadoService;
     @Inject
     private AlunoService alunoService;
     private Aluno aluno;    
@@ -57,7 +52,7 @@ public class AlunoBean implements Serializable {
     }
 
     public void inicializarCidade() {
-        listaCidades = cidades.buscarCidade();
+        listaCidades = cidadeReoRepository.buscarCidade();
     }
     
     public void carregarCidades(){

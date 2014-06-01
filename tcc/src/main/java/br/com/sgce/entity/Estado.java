@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "estado")
@@ -44,15 +45,15 @@ public class Estado implements Serializable {
 
     //este esta funcionando
     @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-     @ForeignKey(name = "AlunoEstado")
-     public List<Aluno> getAlunos() {
-     return alunos;
-     }
+    @ForeignKey(name = "AlunoEstado")
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
 
-     public void setAlunos(List<Aluno> alunos) {
-     this.alunos = alunos;
-     }
-     
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

@@ -10,15 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "aluno")
 public class Aluno implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int id;
+    private Long id;
     private String nome;
     private String responsavel;
     private String email;
@@ -26,16 +29,17 @@ public class Aluno implements Serializable {
     private String telefoneCelular;
     private String telefoneConvencional;
     private String endereco;
+    private String complemento;
     private Estado estado;
     private Cidade cidade;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,7 +63,7 @@ public class Aluno implements Serializable {
         this.responsavel = responsavel;
     }
 
-    @NotBlank
+    @Email
     @Column(length = 40, nullable = false)
     public String getEmail() {
         return email;
@@ -69,7 +73,7 @@ public class Aluno implements Serializable {
         this.email = email;
     }
 
-    @NotBlank
+    @CPF
     @Column(length = 15, nullable = false)
     public String getCpf() {
         return cpf;
@@ -79,6 +83,8 @@ public class Aluno implements Serializable {
         this.cpf = cpf;
     }
 
+    @NotBlank
+    @Column(length = 15, nullable = false)
     public String getTelefoneCelular() {
         return telefoneCelular;
     }
@@ -95,6 +101,8 @@ public class Aluno implements Serializable {
         this.telefoneConvencional = telefoneConvencional;
     }
 
+    @NotBlank
+    @Column(length = 50, nullable = false)
     public String getEndereco() {
         return endereco;
     }
@@ -103,6 +111,17 @@ public class Aluno implements Serializable {
         this.endereco = endereco;
     }
 
+    @NotBlank
+    @Column(length = 50, nullable = false)
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    @NotNull
     @ManyToOne
     @ForeignKey(name = "AlunoEstado")
     @JoinColumn(name = "estado_id", nullable = false)
@@ -114,6 +133,7 @@ public class Aluno implements Serializable {
         this.estado = estado;
     }
 
+    @NotNull
     @ManyToOne
     @ForeignKey(name = "AlunoCidade")
     @JoinColumn(name = "cidade_id", nullable = false)

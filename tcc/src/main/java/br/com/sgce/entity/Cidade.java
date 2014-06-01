@@ -11,11 +11,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "cidade")
@@ -44,7 +43,7 @@ public class Cidade implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
     @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ForeignKey(name = "AlunoCidade")
     public List<Aluno> getAlunos() {
