@@ -11,22 +11,17 @@ import javax.inject.Inject;
 public class AlunoService implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
     @Inject
     private AlunoRepository alunoRepository;
 
-    @Transactional
+    @Transactional //Anotação Transactional
     public Aluno salvar(Aluno aluno) {
-
         Aluno alunoExistente = alunoRepository.porNome(aluno.getNome());
-
 
         if (alunoExistente != null) {
             throw new NegocioException("Ja Existe ");
         }
 
-        System.out.println(aluno.getNome() + "-" + aluno.getEstado());
-        
         return alunoRepository.guardar(aluno);
 
     }

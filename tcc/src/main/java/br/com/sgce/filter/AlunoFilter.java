@@ -9,7 +9,7 @@ public class AlunoFilter implements Serializable{
     private static final long serialVersionUID = 1L;
     
     private String nome;
-
+    
     public String getNome() {
         return nome;
     }

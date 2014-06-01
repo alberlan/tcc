@@ -56,28 +56,24 @@
                 <p:inputMask  mask="(999)9999-9999" id="convencional" size="13" maxlength="13"
                               value="#{alunoBean.aluno.telefoneConvencional}"/>                  
 
-
                 <p:outputLabel value="Estado" for="estado"/>
                 <p:selectOneMenu id="estado" value="#{alunoBean.aluno.estado}">
                     <f:selectItem itemLabel="Selecione o Estado"/>
-                    <f:selectItems value="#{alunoBean.alunoEstados}" var="estado"
+                    <f:selectItems value="#{alunoBean.listaEstados}" var="estado"
                                    itemValue="#{estado}" itemLabel="#{estado.descricao}" />
-                    <p:ajax event="change" process="@this" listener="#{alunoBean.carregarCidades}" update="cidade"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Cidade" for="cidade"/>
-                <p:selectOneMenu id="cidade" >
+                <p:selectOneMenu id="cidade" value="#{alunoBean.aluno.cidade}" >
                     <f:selectItem itemLabel="Selecione a Cidade"/>
-                    <f:selectItems value="#{alunoBean.alunoCidades}" var="cidade"
+                    <f:selectItems value="#{alunoBean.listaCidades}" var="cidade"
                                    itemValue="#{cidade}" itemLabel="#{cidade.descricao}" />                    
                 </p:selectOneMenu>
+
 
                 <p:outputLabel value="Complemento" for="complemento"/>
                 <p:inputText id="complemento" size="45" maxlength="47" 
                              value="#{alunoBean.aluno.endereco}"/>       		
-
-
-
             </p:panelGrid>  	        
 
         </h:form>

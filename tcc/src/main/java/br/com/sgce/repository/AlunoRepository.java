@@ -20,19 +20,17 @@ import org.hibernate.criterion.Restrictions;
 public class AlunoRepository implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
     @Inject
     private EntityManager manager;
 
-    
     public Aluno guardar(Aluno aluno) {
-        
-           
+
         return manager.merge(aluno);
     }
 
     public Aluno porNome(String nome) {
-        try {
+        //consulta feita com jpql
+        try { 
             return manager.createQuery("from Aluno where upper(nome) = :nome", Aluno.class)
                     .setParameter("nome", nome.toUpperCase())
                     .getSingleResult();
@@ -41,21 +39,21 @@ public class AlunoRepository implements Serializable {
         }
     }
 
+    /*Metodo para filtrar aluno e mandar pra tela,da Forma com que esta sendo feito posso pesquisar
+      por outro atributo basta adicionar na classe Alunofilter*/
+    
+    
     public List<Aluno> filtrados(AlunoFilter filtro) {
-
-        Session session = manager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Aluno.class);
+        Session session = manager.unwrap(Session.class); //Pedindo pro manager desempacotar a session do hibernate, e joga na variavel session.
+        Criteria criteria = session.createCriteria(Aluno.class); //criando um criterio para entidade Aluno.
 
         criteria.add(Restrictions.eq(null, filtro));
 
         if (StringUtils.isNotBlank(filtro.getNome())) {
             criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
-
         }
 
         return criteria.addOrder(Order.asc("nome")).list();
-
-
     }
 
     public List<Aluno> buscarAluno() {

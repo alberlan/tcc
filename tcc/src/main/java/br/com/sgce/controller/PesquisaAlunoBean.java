@@ -23,6 +23,7 @@ public class PesquisaAlunoBean implements Serializable {
         filtro = new AlunoFilter();
     }
 
+    //Botao pesquisar
     public void pesquisar() {
         alunosFiltrados = alunoRepository.filtrados(filtro);
 

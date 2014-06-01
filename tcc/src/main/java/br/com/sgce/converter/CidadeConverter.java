@@ -1,30 +1,29 @@
 package br.com.sgce.converter;
 
-import br.com.sgce.entity.Estado;
-import br.com.sgce.repository.EstadoRepository;
+import br.com.sgce.entity.Cidade;
+import br.com.sgce.repository.CidadeRepository;
 import br.com.sgce.util.cdi.CDIServiceLocator;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
 
-@FacesConverter(forClass = Estado.class)
-public class EstadoConverter implements Converter {
+@FacesConverter(forClass = Cidade.class)
+public class CidadeConverter implements Converter {
 
-   // @Inject
-    private EstadoRepository estadoRepository;
+    // @Inject
+    private CidadeRepository cidadeRepository;
 
-    public EstadoConverter() {
-        estadoRepository = CDIServiceLocator.getBean(EstadoRepository.class);
+    public CidadeConverter() {
+        cidadeRepository = CDIServiceLocator.getBean(CidadeRepository.class);
     }
-    
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        Estado retorno = null;
+        Cidade retorno = null;
         if (value != null) {
             Long id = new Long(value);
-            retorno = estadoRepository.porId(id);
+            retorno = cidadeRepository.porId(id);
         }
 
         return retorno;
@@ -34,7 +33,7 @@ public class EstadoConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
 
         if (value != null) {
-            return ((Estado) value).getId().toString();
+            return ((Cidade) value).getId().toString();
         }
 
         return "";

@@ -45,7 +45,10 @@
                 <p:column headerText="CPF" style="text-align: center; width: 80px">
                     <h:outputText value="#{aluno.cpf}"/>
                 </p:column>
-                
+                <p:column headerText="Telefone" style="text-align: right; width: 80px">
+                    <h:outputText value="#{aluno.telefone.celular}"/>
+                </p:column>
+
                 <p:column headerText="Bairro" style="width: 30px">
                     <h:outputText value="#{aluno.endereco.bairro}"/>
                 </p:column>
@@ -54,9 +57,6 @@
                     <p:button icon="ui-icon-pencil" title="Editar"/>
                 </p:column>
             </p:dataTable>
-
-
-
         </h:form>
     </ui:define>
 </ui:composition>

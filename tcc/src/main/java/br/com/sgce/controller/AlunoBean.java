@@ -30,10 +30,9 @@ public class AlunoBean implements Serializable {
     private EstadoService estadoService;
     @Inject
     private AlunoService alunoService;
-    private Aluno aluno;
-    private Estado estado;
-    private List<Cidade> alunoCidades;
-    private List<Estado> alunoEstados;
+    private Aluno aluno;    
+    private List<Cidade> listaCidades;
+    private List<Estado> listaEstados;
 
     public AlunoBean() {
         limpar();
@@ -50,40 +49,31 @@ public class AlunoBean implements Serializable {
         limpar();
     }
     
-    public void carregarCidades(){
-       
-        
-    }
-
     public void inicializarEstado() {
-
+        
         if (FacesUtil.isNotPostback()) {
-            alunoEstados = estadoRepository.buscarEstado();
+            listaEstados = estadoRepository.buscarEstado();
         }
     }
 
     public void inicializarCidade() {
-        alunoCidades = cidades.buscarCidade();
+        listaCidades = cidades.buscarCidade();
+    }
+    
+    public void carregarCidades(){
+        
     }
 
     public Aluno getAluno() {
         return aluno;
-
+    }
+   
+    public List<Cidade> getListaCidades() {
+        return listaCidades;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public List<Estado> getListaEstados() {
+        return listaEstados;
     }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
-    public List<Cidade> getAlunoCidades() {
-        return alunoCidades;
-    }
-
-    public List<Estado> getAlunoEstados() {
-        return alunoEstados;
-    }
+        
 }

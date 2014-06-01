@@ -9,6 +9,8 @@ import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+//Interceptador de Transações
+
 @Interceptor
 @Transactional
 public class TransactionInterceptor implements Serializable {

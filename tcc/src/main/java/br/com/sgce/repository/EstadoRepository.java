@@ -1,4 +1,3 @@
-
 package br.com.sgce.repository;
 
 import br.com.sgce.entity.Cidade;
@@ -8,9 +7,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+public class EstadoRepository implements Serializable {
 
-public class EstadoRepository implements Serializable{
-    
     private static final long serialVersionUID = 1L;
     @Inject
     private EntityManager manager;
@@ -18,18 +16,18 @@ public class EstadoRepository implements Serializable{
     public Estado guardar(Estado estado) {
 
         return manager.merge(estado);
-    }  
-    
-    public List<Estado> buscarEstado(){        
-        return manager.createQuery("from Estado" , Estado.class).getResultList();
-        
-    }      
-    public Estado porId(Long id){
+    }
+
+    public List<Estado> buscarEstado() {
+        return manager.createQuery("from Estado", Estado.class).getResultList();
+    }
+
+    public Estado porId(Long id) {
         return manager.find(Estado.class, id);
     }
-    
-    public List<Estado> cidadesDe(Estado estado){
-        return manager.createQuery("from Estado where estado =:raiz", Estado.class)
-                .setParameter("raiz", estado).getResultList();
+
+    public List<Cidade> cidadesDe(Cidade cidade) {
+        return manager.createQuery("from Cidade where cidade =:raiz", Cidade.class)
+                .setParameter("raiz", cidade).getResultList();
     }
 }

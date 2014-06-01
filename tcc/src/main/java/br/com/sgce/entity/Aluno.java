@@ -1,21 +1,15 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -33,7 +27,7 @@ public class Aluno implements Serializable {
     private String telefoneConvencional;
     private String endereco;
     private Estado estado;
-  
+    private Cidade cidade;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -120,8 +114,17 @@ public class Aluno implements Serializable {
         this.estado = estado;
     }
 
+    @ManyToOne
+    @ForeignKey(name = "AlunoCidade")
+    @JoinColumn(name = "cidade_id", nullable = false)
+    public Cidade getCidade() {
+        return cidade;
+    }
 
-    
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -129,7 +132,6 @@ public class Aluno implements Serializable {
         return hash;
     }
 
-    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
