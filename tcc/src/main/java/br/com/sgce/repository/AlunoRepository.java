@@ -1,7 +1,6 @@
 package br.com.sgce.repository;
 
 import br.com.sgce.entity.Aluno;
-import br.com.sgce.entity.Estado;
 import br.com.sgce.filter.AlunoFilter;
 import java.io.Serializable;
 import java.util.List;
@@ -40,8 +39,7 @@ public class AlunoRepository implements Serializable {
     }
 
     /*Metodo para filtrar aluno e mandar pra tela,da Forma com que esta sendo feito posso pesquisar
-      por outro atributo basta adicionar na classe Alunofilter*/
-    
+      por outro atributo basta adicionar na classe Alunofilter*/    
     
     public List<Aluno> filtrados(AlunoFilter filtro) {
         Session session = manager.unwrap(Session.class); //Pedindo pro manager desempacotar a session do hibernate, e joga na variavel session.

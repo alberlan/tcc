@@ -1,6 +1,6 @@
 package br.com.sgce.repository;
 
-import br.com.sgce.entity.Cidade;
+
 import br.com.sgce.entity.Estado;
 import java.io.Serializable;
 import java.util.List;
@@ -24,10 +24,5 @@ public class EstadoRepository implements Serializable {
 
     public Estado porId(Long id) {
         return manager.find(Estado.class, id);
-    }
-
-    public List<Cidade> cidadesDe(Cidade cidade) {
-        return manager.createQuery("from Cidade where cidade =:raiz", Cidade.class)
-                .setParameter("raiz", cidade).getResultList();
     }
 }

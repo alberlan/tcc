@@ -13,7 +13,6 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 @Named
 @ViewScoped
 public class AlunoBean implements Serializable {
@@ -25,7 +24,7 @@ public class AlunoBean implements Serializable {
     private EstadoRepository estadoRepository;
     @Inject
     private AlunoService alunoService;
-    private Aluno aluno;    
+    private Aluno aluno;
     private List<Cidade> listaCidades;
     private List<Estado> listaEstados;
 
@@ -43,26 +42,25 @@ public class AlunoBean implements Serializable {
         FacesUtil.addInfoMessage("Aluno Salvo com Sucesso!");
         limpar();
     }
-    
+
     public void inicializarEstado() {
-        
+        //Evitar consultas desnecessárias apartir da segunda vez é postback
         if (FacesUtil.isNotPostback()) {
             listaEstados = estadoRepository.buscarEstado();
         }
     }
 
     public void inicializarCidade() {
-        listaCidades = cidadeReoRepository.buscarCidade();
-    }
-    
-    public void carregarCidades(){
-        
+        //Evitar consultas desnecessárias apartir da segunda vez é postback
+        if (FacesUtil.isNotPostback()) {
+            listaCidades = cidadeReoRepository.buscarCidade();
+        }
     }
 
     public Aluno getAluno() {
         return aluno;
     }
-   
+
     public List<Cidade> getListaCidades() {
         return listaCidades;
     }
@@ -70,5 +68,4 @@ public class AlunoBean implements Serializable {
     public List<Estado> getListaEstados() {
         return listaEstados;
     }
-        
 }

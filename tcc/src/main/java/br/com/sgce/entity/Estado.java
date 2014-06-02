@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "estado")
@@ -23,6 +22,7 @@ public class Estado implements Serializable {
     private Long id;
     private String descricao;
     private List<Aluno> alunos;
+    private List<Funcionario> funcionarios;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,6 +52,16 @@ public class Estado implements Serializable {
 
     public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
+    }
+
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "FuncionarioEstado")
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
     }
 
     @Override

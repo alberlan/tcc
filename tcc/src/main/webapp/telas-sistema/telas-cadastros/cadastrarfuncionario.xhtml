@@ -6,17 +6,22 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="titulo">Novo Funcionario</ui:define>
-    <ui:define name="corpo">             
+    <ui:define name="corpo">   
 
-        <h:form>    
+        <f:metadata>              
+            <f:event listener="#{funcionarioBean.inicializarCidade()}" type="preRenderView"/>    
+            <f:event listener="#{funcionarioBean.inicializarEstado()}" type="preRenderView"/>  
+        </f:metadata>  
 
+        <h:form>   
             <h1>Novo Funcionario</h1>
             <p:growl autoUpdate="true"/>
 
             <p:toolbar style="margin-top: 10px" >
                 <p:toolbarGroup>
                     <p:button value="Novo" outcome="/telas-sistema/telas-cadastros/cadastrarfuncionario"/>
-                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{funcionarioBean.salvar()}"/>
+                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{funcionarioBean.salvar()}"
+                                     update="@form"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:button value="Pesquisa"/>
@@ -28,57 +33,58 @@
 
                 <p:outputLabel value="Nome" for="nome"/>
                 <p:inputText id="nome" size="50" maxlength="50" 
-                             />
+                             value="#{funcionarioBean.funcionario.nome}"/>
 
                 <p:outputLabel value="E-mail" for="email"/>
                 <p:inputText id="email" size="45" maxlength="50" 
-                             />  
-                
+                             value="#{funcionarioBean.funcionario.email}"/>  
+
+                <p:outputLabel value="CPF" for="cpf"/>
+                <p:inputMask  mask="999.999.999-99" id="cpf" size="15" maxlength="15"
+                              value="#{funcionarioBean.funcionario.cpf}"/> 
+
                 <p:outputLabel value="Tel.Celular" for="celular"/>
                 <p:inputMask  mask="(999)9999-9999" id="celular" size="14" maxlength="14"
-                              />  
-                
+                              value="#{funcionarioBean.funcionario.telefoneCelular}"/>  
+
                 <p:outputLabel value="Tel.Convencional" for="convencional"/>
                 <p:inputMask  mask="(999)9999-9999" id="convencional" size="14" maxlength="14"
-                             />      
+                              value="#{funcionarioBean.funcionario.telefoneConvencional}"/>        
 
-                <p:outputLabel value="Tipo Funcionário" for="tipofuncionario"/>
-                <p:selectOneMenu id="tipofuncionario" required="true">
+                <p:outputLabel value="Tipo Funcionário" for="tipoFuncionario"/>
+                <p:selectOneMenu id="tipoFuncionario" value="#{funcionarioBean.funcionario.tipoFuncionario}">
                     <f:selectItem itemLabel="Selecione o Tipo Funcionário" />
                     <f:selectItems value="#{funcionarioBean.tiposFuncionario}"
-                                   var="tipofuncionario" itemValue="#{tipofuncionario}"
-                                   itemLabel="#{tipofuncionario.descricao}"/>
+                                   var="tipoFuncionario" itemValue="#{tipoFuncionario}"
+                                   itemLabel="#{tipoFuncionario.descricao}"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Estado" for="estado"/>
-                <p:inputText id="estado" size="25" maxlength="25"
-                             /> 
+                <p:selectOneMenu id="estado" value="#{funcionarioBean.funcionario.estado}">
+                    <f:selectItem itemLabel="Selecione o Estado"/>
+                    <f:selectItems value="#{funcionarioBean.listaEstados}" var="estado"
+                                   itemValue="#{estado}" itemLabel="#{estado.descricao}" />
+                </p:selectOneMenu>
 
                 <p:outputLabel value="Cidade" for="cidade"/>
-                <p:inputText id="cidade" size="25" maxlength="25"
-                             />  
+                <p:selectOneMenu id="cidade" value="#{funcionarioBean.funcionario.cidade}" >
+                    <f:selectItem itemLabel="Selecione a Cidade"/>
+                    <f:selectItems value="#{funcionarioBean.listaCidades}" var="cidade"
+                                   itemValue="#{cidade}" itemLabel="#{cidade.descricao}" />                    
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Endereço" for="endereco"/>
+                <p:inputText id="endereco" size="45" maxlength="47" 
+                             value="#{funcionarioBean.funcionario.endereco}"/>     
 
                 <p:outputLabel value="Bairro" for="bairro"/>
-                <p:inputText id="bairro" size="25" maxlength="25"
-                             /> 
-
-                <p:outputLabel value="Logradouro" for="logradouro"/>
-                <p:inputText id="logradouro" size="45" maxlength="47"
-                             />     
+                <p:inputText id="bairro" size="40" maxlength="40"
+                             value="#{funcionarioBean.funcionario.bairro}"/> 
 
                 <p:outputLabel value="Complemento" for="complemento"/>
                 <p:inputText id="complemento" size="45" maxlength="47" 
-                             />       		
-
-                <p:outputLabel value="Numero" for="numero"/>
-                <p:inputText id="numero" size="10" maxlength="10" 
-                             />     
-
-                <p:outputLabel value="Cep" for="cep"/>
-                <p:inputMask  mask="99999-999" id="cep" size="10" maxlength="12" 
-                              />    
-
-            </p:panelGrid>  	                                       
+                             value="#{funcionarioBean.funcionario.complemento}"/>       		
+            </p:panelGrid>     
 
         </h:form>        
 

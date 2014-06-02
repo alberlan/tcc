@@ -1,7 +1,6 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -14,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "cidade")
@@ -24,6 +22,7 @@ public class Cidade implements Serializable {
     private Long id;
     private String descricao;
     private List<Aluno> alunos;
+    private List<Funcionario> funcionarios;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,6 +51,16 @@ public class Cidade implements Serializable {
 
     public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
+    }
+
+    @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "FuncionarioCidade")
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
     }
 
     @Override

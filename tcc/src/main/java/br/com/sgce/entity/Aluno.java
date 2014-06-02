@@ -29,6 +29,7 @@ public class Aluno implements Serializable {
     private String telefoneCelular;
     private String telefoneConvencional;
     private String endereco;
+    private String bairro;
     private String complemento;
     private Estado estado;
     private Cidade cidade;
@@ -111,6 +112,16 @@ public class Aluno implements Serializable {
         this.endereco = endereco;
     }
 
+    @NotBlank
+    @Column(length = 40, nullable = false)
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }    
+    
     @NotBlank
     @Column(length = 50, nullable = false)
     public String getComplemento() {
