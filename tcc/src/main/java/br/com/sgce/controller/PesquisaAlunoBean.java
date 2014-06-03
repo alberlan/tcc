@@ -20,7 +20,7 @@ public class PesquisaAlunoBean implements Serializable {
     private List<Aluno> alunosFiltrados;
 
     public PesquisaAlunoBean() {
-        filtro = new AlunoFilter();
+        filtro = new AlunoFilter();     
     }
 
     //Botao pesquisar

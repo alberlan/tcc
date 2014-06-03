@@ -27,7 +27,7 @@ public class AlunoRepository implements Serializable {
         return manager.merge(aluno);
     }
 
-    public Aluno porNome(String nome) {
+   /* public Aluno porNome(String nome) {
         //consulta feita com jpql
         try { 
             return manager.createQuery("from Aluno where upper(nome) = :nome", Aluno.class)
@@ -37,6 +37,7 @@ public class AlunoRepository implements Serializable {
             return null;
         }
     }
+    * /
 
     /*Metodo para filtrar aluno e mandar pra tela,da Forma com que esta sendo feito posso pesquisar
       por outro atributo basta adicionar na classe Alunofilter*/    
@@ -45,7 +46,8 @@ public class AlunoRepository implements Serializable {
         Session session = manager.unwrap(Session.class); //Pedindo pro manager desempacotar a session do hibernate, e joga na variavel session.
         Criteria criteria = session.createCriteria(Aluno.class); //criando um criterio para entidade Aluno.
 
-        criteria.add(Restrictions.eq(null, filtro));
+        //Vrificar o que está sendo feito.
+     //   criteria.add(Restrictions.eq(null, filtro));
 
         if (StringUtils.isNotBlank(filtro.getNome())) {
             criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));

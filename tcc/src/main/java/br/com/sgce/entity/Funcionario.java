@@ -57,7 +57,6 @@ public class Funcionario implements Serializable {
     }
 
     @Email
-    @NotBlank
     @Column(length = 40, nullable = false)
     public String getEmail() {
         return email;
@@ -159,7 +158,7 @@ public class Funcionario implements Serializable {
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-       
+
     @Override
     public int hashCode() {
         int hash = 7;

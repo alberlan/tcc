@@ -16,12 +16,12 @@ public class AlunoService implements Serializable {
 
     @Transactional //Anotação Transactional
     public Aluno salvar(Aluno aluno) {
-        Aluno alunoExistente = alunoRepository.porNome(aluno.getNome());
+/*        Aluno alunoExistente = alunoRepository.porNome(aluno.getNome());
 
         if (alunoExistente != null) {
             throw new NegocioException("Ja Existe ");
         }
-
+*/
         return alunoRepository.guardar(aluno);
 
     }

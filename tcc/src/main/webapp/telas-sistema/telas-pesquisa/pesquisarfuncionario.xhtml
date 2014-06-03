@@ -5,15 +5,15 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Pesquisa de Aluno</ui:define>
+    <ui:define name="titulo">Pesquisa de Funcionário</ui:define>
 
     <ui:define name="corpo">
         <h:form>
-            <h1>Pesquisa de Aluno</h1>
+            <h1>Pesquisa de Funcionário</h1>
 
             <p:toolbar style="margin-top: 20px">
                 <p:toolbarGroup>
-                    <p:commandButton value="Pesquisar" action="#{pesquisaAlunoBean.pesquisar()}" 
+                    <p:commandButton value="Pesquisar" action="#{pesquisaFuncionarioBean.pesquisar()}" 
                                      update="@form"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
@@ -24,42 +24,39 @@
             <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
                          columnClasses="rotulo, campo">
 
-                <p:outputLabel value="Aluno" />
-                <p:inputText size="40" value="#{pesquisaAlunoBean.filtro.nome}"/> 
+                <p:outputLabel value="Funcionário" />
+                <p:inputText size="40" value="#{pesquisaFuncionarioBean.filtro.nome}"/> 
 
             </p:panelGrid>
 
-            <p:dataTable id="alunosTable" value="#{pesquisaAlunoBean.alunosFiltrados}" var="aluno" 
-                         style="margin-top: 20px" emptyMessage="Nenhum aluno encontrado."
+            <p:dataTable id="funcionariosTable" value="#{pesquisaFuncionarioBean.funcionariosFiltrados}"
+                         var="funcionario" 
+                         style="margin-top: 20px" emptyMessage="Nenhum funcionario encontrado."
                          rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
                 <p:column headerText="Código" style="text-align: center; width: 5px">
-                    <h:outputText value="#{aluno.id}"/>
+                    <h:outputText value="#{funcionario.id}"/>
                 </p:column>
                 <p:column headerText="Aluno" style="text-align: center; width: 160px">
-                    <h:outputText value="#{aluno.nome}" />
+                    <h:outputText value="#{funcionario.nome}" />
                 </p:column>
-                
-                <p:column headerText="Responsável" style="text-align: center; width: 160px">
-                    <h:outputText value="#{aluno.responsavel}"/>
-                </p:column>
-                
+                                
                 <p:column headerText="Email" style="text-align: center; width: 160px">
-                    <h:outputText value="#{aluno.email}"/>
+                    <h:outputText value="#{funcionario.email}"/>
                 </p:column>
 
                 <p:column headerText="CPF" style="text-align: center; width: 80px">
-                    <h:outputText value="#{aluno.cpf}"/>
+                    <h:outputText value="#{funcionario.cpf}"/>
                 </p:column>
                 <p:column headerText="Telefone" style="text-align: right; width: 80px">
-                    <h:outputText value="#{aluno.telefoneCelular}"/>
+                    <h:outputText value="#{funcionario.telefoneCelular}"/>
                 </p:column>
 
-                <p:column headerText="Cidade" style="width: 30px">
-                    <h:outputText value="#{aluno.cidade.descricao}"/>
+                <p:column headerText="Cidade" style="text-align: center; width: 80px">
+                    <h:outputText value="#{funcionario.cidade.descricao}"/>
                 </p:column>
                 
                 <p:column headerText="Bairro" style="width: 30px">
-                    <h:outputText value="#{aluno.bairro}"/>
+                    <h:outputText value="#{funcionario.bairro}"/>
                 </p:column>
 
                 <p:column style="text-align: center; width: 30px">

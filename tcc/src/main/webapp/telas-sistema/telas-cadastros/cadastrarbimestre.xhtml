@@ -8,41 +8,38 @@
     <ui:define name="titulo">Novo Bimestre</ui:define>
     <ui:define name="corpo">
         <h:form>
-        <h1>Novo Bimestre</h1>
-        
-        <p:growl autoUpdate="true"/>
+            <h1>Novo Bimestre</h1>
 
-        <p:toolbar style="margin-top: 10px">
-            <p:toolbarGroup>
-                <p:button value="Novo" outcome="/telas-sistema/telas-cadastros/cadastrarbimestre"/>
-                <p:commandButton value="Salvar" id="botaoSalvar"  
-                                 update="@form"/>
-            </p:toolbarGroup>
-            <p:toolbarGroup align="right">
-                <p:button value="Pesquisa"/>
-            </p:toolbarGroup>
-        </p:toolbar>
+            <p:growl autoUpdate="true"/>
 
-        <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-                     columnClasses="rotulo, campo">
+            <p:toolbar style="margin-top: 10px">
+                <p:toolbarGroup>
+                    <p:button value="Novo" outcome="/telas-sistema/telas-cadastros/cadastrarbimestre"/>
+                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{bimestreBean.salvar()}" 
+                                     update="@form"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:button value="Pesquisa"/>
+                </p:toolbarGroup>
+            </p:toolbar>
 
-            <p:outputLabel value="Descrição" for="descricao"/>
-            <p:inputText id="descricao" size="4" maxlength="5" 
-                         onkeyup="this.value = this.value.toUpperCase();"/>
-            
-            <p:outputLabel value="Data Incicio" for="datainicio"/>
-            <p:calendar id="datainicio"  effect="explode" size="8"/>
-                         
-            <p:outputLabel value="Data Final" for="datafinal"/>
-            <p:calendar id="datafinal"  effect="explode" size="8"/>
-                         
-            
-                
-                         
-          
+            <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                         columnClasses="rotulo, campo">
 
-        </p:panelGrid>
+                <p:outputLabel value="Descrição" for="descricao"/>
+                <p:inputText id="descricao" size="4" maxlength="5" 
+                             onkeyup="this.value = this.value.toUpperCase();"
+                             value="#{bimestreBean.bimestre.descricao}"/>
 
+                <p:outputLabel value="Data Incicio" for="datainicio"/>
+                <p:calendar id="datainicio"  effect="explode" size="8"
+                            value="#{bimestreBean.bimestre.dataInicial}"/>
+
+                <p:outputLabel value="Data Final" for="datafinal"/>
+                <p:calendar id="datafinal"  effect="explode" size="8"
+                            value="#{bimestreBean.bimestre.dataFinal}"/>                   
+
+            </p:panelGrid>
         </h:form>
     </ui:define>
 </ui:composition>

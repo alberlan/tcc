@@ -4,8 +4,12 @@ import br.com.sgce.entity.Bimestre;
 import br.com.sgce.service.BimestreService;
 import br.com.sgce.util.jsf.FacesUtil;
 import java.io.Serializable;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@Named
+@ViewScoped
 public class BimestreBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
