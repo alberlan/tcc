@@ -42,6 +42,10 @@ public class AlunoBean implements Serializable {
         FacesUtil.addInfoMessage("Aluno Salvo com Sucesso!");
         limpar();
     }
+    
+    public boolean editar(){
+        return this.aluno.getId() != null;
+    }
 
     public void inicializarEstado() {
         //Evitar consultas desnecessárias apartir da segunda vez é postback
@@ -61,6 +65,11 @@ public class AlunoBean implements Serializable {
         return aluno;
     }
 
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    //Set para pegar aluno na hora de editar
     public List<Cidade> getListaCidades() {
         return listaCidades;
     }

@@ -3,18 +3,22 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui">
 
-    <ui:define name="titulo">Novo Funcionario</ui:define>
+    <ui:define name="titulo">#{funcionarioBean.editar() ? 'Ediçao de Funcionário' : 'Novo Funcionário' }</ui:define>
     <ui:define name="corpo">   
 
-        <f:metadata>              
+        <f:metadata>   
+            <!-- Buscar parametro recebido na requisição  -->
+            <o:viewParam name="funcionario" value="#{funcionarioBean.funcionario}" />
+
             <f:event listener="#{funcionarioBean.inicializarCidade()}" type="preRenderView"/>    
             <f:event listener="#{funcionarioBean.inicializarEstado()}" type="preRenderView"/>  
         </f:metadata>  
 
         <h:form>   
-            <h1>Novo Funcionario</h1>
+            <h1>#{funcionarioBean.editar() ? 'Ediçao de Funcionário' : 'Novo Funcionário' }</h1>
             <p:growl autoUpdate="true"/>
 
             <p:toolbar style="margin-top: 10px" >
@@ -24,7 +28,7 @@
                                      update="@form"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                    <p:button value="Pesquisa"/>
+                    <p:button value="Pesquisa" outcome="/telas-sistema/telas-pesquisa/pesquisarfuncionario"/>
                 </p:toolbarGroup>
             </p:toolbar>
 

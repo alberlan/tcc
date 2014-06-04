@@ -1,6 +1,7 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,7 +24,7 @@ import org.hibernate.validator.constraints.br.CPF;
 public class Funcionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private long id;
+    private Long id;
     private String nome;
     private String email;
     private String cpf;
@@ -38,11 +39,11 @@ public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -161,8 +162,8 @@ public class Funcionario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -175,7 +176,7 @@ public class Funcionario implements Serializable {
             return false;
         }
         final Funcionario other = (Funcionario) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;

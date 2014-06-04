@@ -12,15 +12,15 @@ public class FuncionarioService implements Serializable {
     @Inject
     private FuncionarioRepository funcionarioRepository;
 
-    @Transactional
+   @Transactional
     public Funcionario salvar(Funcionario funcionario) {
-
+/*
         Funcionario funcionarioExistente = funcionarioRepository.porNome(funcionario.getNome());
 
         if (funcionarioExistente != null) {
             throw new NegocioException("Ja Existe ");
         }
-
+*/
         return funcionarioRepository.guardar(funcionario);
 
     }

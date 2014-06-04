@@ -3,12 +3,15 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui">
 
-    <ui:define name="titulo">Novo Aluno</ui:define>
+    <ui:define name="titulo">#{alunoBean.editar() ? 'Ediçao de Aluno' : 'Novo Aluno' }</ui:define>
     <ui:define name="corpo">      
 
         <f:metadata>   
+            <!-- Buscar parametro recebido na requisição  -->
+            <o:viewParam name="aluno" value="#{alunoBean.aluno}" />
             <!-- Chamando o método inicializar cidade   -->
             <f:event listener="#{alunoBean.inicializarCidade()}" type="preRenderView"/>    
             <f:event listener="#{alunoBean.inicializarEstado()}" type="preRenderView"/>  
@@ -16,7 +19,7 @@
 
         <h:form>
 
-            <h1>Novo Aluno</h1>
+            <h1>#{alunoBean.editar() ? 'Ediçao de Aluno' : 'Novo Aluno' }</h1>
             <p:growl autoUpdate="true"/>
 
             <p:toolbar style="margin-top: 10px">
@@ -26,7 +29,7 @@
                                      action="#{alunoBean.salvar()}" update="@form"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                    <p:button value="Pesquisa"/>
+                    <p:button value="Pesquisa" outcome="/telas-sistema/telas-pesquisa/pesquisaraluno"/>
                 </p:toolbarGroup>
             </p:toolbar>
 

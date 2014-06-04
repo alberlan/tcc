@@ -43,6 +43,10 @@ public class FuncionarioBean implements Serializable {
         limpar();
     }
 
+    public boolean editar(){
+        return this.funcionario.getId() != null;
+    }
+    
     public void inicializarEstado() {
         if (FacesUtil.isNotPostback()) {
             listaEstados = estadoRepository.buscarEstado();
@@ -66,7 +70,11 @@ public class FuncionarioBean implements Serializable {
     public Funcionario getFuncionario() {
         return funcionario;
     }
-    
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+        
     public TipoFuncionario[] getTiposFuncionario(){
         return TipoFuncionario.values();
     }

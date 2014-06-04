@@ -60,4 +60,8 @@ public class AlunoRepository implements Serializable {
         return manager.createQuery("from Aluno", Aluno.class).getResultList();
 
     }
+    //Retorna um aluno dado o id dele
+    public Aluno porId(Long id) {
+       return manager.find(Aluno.class, id);
+    }
 }

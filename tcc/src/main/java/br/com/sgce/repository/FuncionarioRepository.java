@@ -54,4 +54,9 @@ public class FuncionarioRepository implements Serializable {
         return manager.createQuery("from Funcionario", Funcionario.class).getResultList();
 
     }
+
+    //Retorna um aluno dado o id dele
+    public Funcionario porId(Long id) {
+        return manager.find(Funcionario.class, id);
+    }
 }
