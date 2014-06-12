@@ -7,41 +7,47 @@
 
     <ui:define name="titulo">Alocar Professor</ui:define>
     <ui:define name="corpo">
-        <h1>Alocar Professor</h1>
+        
+        <f:metadata>               
+            <!-- Chamando o método inicializar cidade   -->           
+            <f:event listener="#{funcionarioBean.inicializarSerie()}" type="preRenderView"/>  
+            <f:event listener="#{funcionarioBean.inicializarFuncionario()}" type="preRenderView"/>  
+        </f:metadata>
+        
+        <h:form>
 
-        <p:toolbar style="margin-top: 10px">
-            <p:toolbarGroup>
-                <p:button value="Novo" outcome="/telas-sistema/telas-gerenciamento/alocarprofessor"/>
-                <p:commandButton value="Salvar" id="botaoSalvar"/>
-            </p:toolbarGroup>
-            <p:toolbarGroup align="right">
-                <p:button value="Pesquisa"/>
-            </p:toolbarGroup>
-        </p:toolbar>
+            <h1>Alocar Professor</h1>
+            <p:growl autoUpdate="true"/>
+            
+            <p:toolbar style="margin-top: 10px">
+                <p:toolbarGroup>                    
+                    <p:commandButton value="Salvar" id="botaoSalvar" 
+                                     update="@form"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:button value="Pesquisa"/>
+                </p:toolbarGroup>
+            </p:toolbar>
 
-        <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-                     columnClasses="rotulo, campo">
+            <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                         columnClasses="rotulo, campo">        
+                
+                <p:outputLabel value="Professor" for="professor"/>
+                <p:selectOneMenu id="professor" value="#{funcionarioBean.funcionario.nome}" >
+                    <f:selectItem itemLabel="Selecione o Professor"/>
+                    <f:selectItems value="#{funcionarioBean.listaFuncionarios}" var="professor"
+                                   itemValue="#{professor}" itemLabel="#{professor.nome}" />                    
+                </p:selectOneMenu>
+                
+                <p:outputLabel value="Série"/>
+                <p:selectCheckboxMenu  label="Séries" filter="true" 
+                                       filterMatchMode="startsWith" panelStyle="width:220px">
+                    <f:selectItems value="#{funcionarioBean.listaSeries}" var="serie"
+                                   itemValue="#{serie}" itemLabel="#{serie.descricao}"/>
+                </p:selectCheckboxMenu>   
 
-            <p:outputLabel value="Professor" for="professor"/>
-            <p:autoComplete id="professor" value="" required="true" completeMethod="trtr" 
-                            forceSelection="true" dropdown="true"/>         
-
-            <p:outputLabel value="Série" for="serie"/>
-            <p:autoComplete id="serie" value="" required="true" completeMethod="ttrtr" 
-                            forceSelection="true" dropdown="true"/>  
-
-            <p:outputLabel value="Turma" for="turma"/>                            
-            <p:autoComplete id="turma" value="" required="true" completeMethod="ttrtr" 
-                            forceSelection="true" dropdown="true"/>  
-
-            <p:outputLabel value="Disciplina"/>
-            <p:selectCheckboxMenu  label="Disciplinas" filter="true" 
-                                   filterMatchMode="startsWith" panelStyle="width:220px">
-                <f:selectItems />
-            </p:selectCheckboxMenu>   
-
-
-        </p:panelGrid>
+            </p:panelGrid>
+        </h:form>        
 
     </ui:define>
 </ui:composition>

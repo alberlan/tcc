@@ -44,15 +44,24 @@ public class AlunoRepository implements Serializable {
     
     public List<Aluno> filtrados(AlunoFilter filtro) {
         Session session = manager.unwrap(Session.class); //Pedindo pro manager desempacotar a session do hibernate, e joga na variavel session.
-        Criteria criteria = session.createCriteria(Aluno.class); //criando um criterio para entidade Aluno.
-
-        //Vrificar o que está sendo feito.
-     //   criteria.add(Restrictions.eq(null, filtro));
-
+        Criteria criteria = session.createCriteria(Aluno.class) //criando um criterio para entidade Aluno.
+        .createAlias("serie", "s");
+        
+        //Consulta aluno por Nome
         if (StringUtils.isNotBlank(filtro.getNome())) {
             criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
         }
-
+        
+     /*   //Consulta aluno por Status
+        if (filtro.getStatusaluno() != null && filtro.getStatusaluno().length > 0){
+            criteria.add(Restrictions.in("statusAluno", filtro.getStatusaluno()));
+        }
+     */   
+        //Consulta aluno por Série
+        if (StringUtils.isNotBlank(filtro.getSerie())) {
+            criteria.add(Restrictions.ilike("s.descricao", filtro.getSerie(), MatchMode.ANYWHERE));
+        }
+             
         return criteria.addOrder(Order.asc("nome")).list();
     }
 

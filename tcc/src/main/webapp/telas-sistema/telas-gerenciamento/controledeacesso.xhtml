@@ -7,40 +7,56 @@
 
     <ui:define name="titulo">Controle de Acesso</ui:define>
     <ui:define name="corpo">
-        <h1>Controle de Acesso</h1>
 
-        <p:toolbar style="margin-top: 10px">
-            <p:toolbarGroup>
-                <p:button value="Novo" outcome="/telas-sistema/telas-gerenciamento/controledeacesso"/>
-                <p:commandButton value="Salvar" id="botaoSalvar"/>
-            </p:toolbarGroup>
-            <p:toolbarGroup align="right">
-                <p:button value="Pesquisa"/>
-            </p:toolbarGroup>
-        </p:toolbar>
+        <f:metadata>   
+            <!-- Chamando o método inicializar cidade   -->              
+            <f:event listener="#{usuarioBean.inicializarFuncionario()}" type="preRenderView"/>  
+        </f:metadata>   
 
-        <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-                     columnClasses="rotulo, campo">
+        <h:form>     
 
-            <p:outputLabel value="Nome Fun" for="nome"/>                            
-            <p:autoComplete id="nome" value="" required="true" completeMethod="twrtr" 
-                            forceSelection="true" dropdown="true"/>  
+            <h1>Controle de Acesso</h1>
+            <p:growl autoUpdate="true"/>
 
-            <p:outputLabel value="Login" for="login"/>
-            <p:inputText id="login" required="true" size="20" maxlength="20"/>             
+            <p:toolbar style="margin-top: 10px">
+                <p:toolbarGroup>
+                    <p:button value="Novo" outcome="/telas-sistema/telas-gerenciamento/controledeacesso"/>
+                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{usuarioBean.salvar()}"
+                                     update="@form"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:button value="Pesquisa"/>
+                </p:toolbarGroup>
+            </p:toolbar>
 
-            <p:outputLabel value="Senha" for="senha"/>
-            <p:password id="senha" required="true" size="15" maxlength="15" 
-                        feedback="true" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"
-                        promptLabel="Informe a Senha" match="confirmarsenha"/>  
+            <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                         columnClasses="rotulo, campo">
 
-            <p:outputLabel value="Confirmar Senha" for="confirmarsenha"/>
-            <p:password id="confirmarsenha" required="true" size="15" maxlength="15"
-                        feedback="true" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"
-                        promptLabel="Informe a Senha" />  
+                <p:outputLabel value="Nome Fun" for="funcionario"/>
+                <p:selectOneMenu id="funcionario" value="#{usuarioBean.usuario.funcionario}" >
+                    <f:selectItem itemLabel="Selecione o Funcionario"/>
+                    <f:selectItems value="#{eAcessoBean.listaFuncionarios}" var="funcionario"
+                                   itemValue="#{funcionario}" itemLabel="#{funcionario.nome}" />                    
+                </p:selectOneMenu>
+                
+
+                <p:outputLabel value="Login" for="login"/>
+                <p:inputText id="login" required="true" size="20" maxlength="20"
+                             value="#{usuarioBean.usuario.login}"/>             
+
+                <p:outputLabel value="Senha" for="senha"/>
+                <p:password id="senha" required="true" size="15" maxlength="15" 
+                            feedback="true" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"
+                            promptLabel="Informe a Senha" match="confirmarsenha"
+                            value="#{usuarioBean.usuario.senha}"/>  
+
+                <p:outputLabel value="Confirmar Senha" for="confirmarsenha"/>
+                <p:password id="confirmarsenha" required="true" size="15" maxlength="15"
+                            feedback="true" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"
+                            promptLabel="Informe a Senha" />  
 
 
-        </p:panelGrid>
-
+            </p:panelGrid>
+        </h:form>
     </ui:define>
 </ui:composition>

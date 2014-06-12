@@ -14,15 +14,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-@Entity
-@Table(name = "matricular_aluno")
+
 public class MatricularAluno implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Long id;
     private Date data;
-    private Aluno aluno;
-    private Turma turma;
+    private Aluno aluno;    
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,15 +51,7 @@ public class MatricularAluno implements Serializable {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-
     
-    public Turma getTurma() {
-        return turma;
-    }
-
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
 
     @Transient
     public boolean isNovo() {

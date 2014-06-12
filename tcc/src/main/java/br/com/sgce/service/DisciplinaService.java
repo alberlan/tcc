@@ -13,18 +13,18 @@ public class DisciplinaService implements Serializable{
    private static final long serialVersionUID = 1L;
     
     @Inject
-    private DisciplinaRepository disciplinas;
+    private DisciplinaRepository disciplinaRepository;
     
    @Transactional
     public Disciplina salvar(Disciplina disciplina){
         
-        Disciplina disciplinaExistente = disciplinas.porDescricao(disciplina.getDescricao());
+        Disciplina disciplinaExistente = disciplinaRepository.porDescricao(disciplina.getDescricao());
         
         if(disciplinaExistente != null){
             throw new NegocioException("Ja Existe ");
         }
         
-        return disciplinas.guardar(disciplina);
+        return disciplinaRepository.guardar(disciplina);
         
     }   
     

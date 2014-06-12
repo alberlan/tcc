@@ -1,14 +1,14 @@
 package br.com.sgce.controller;
 
 import br.com.sgce.entity.Aluno;
+import br.com.sgce.entity.Frequencia;
 import br.com.sgce.entity.Serie;
-import br.com.sgce.entity.StatusAluno;
 import br.com.sgce.filter.AlunoFilter;
 import br.com.sgce.repository.AlunoRepository;
 import br.com.sgce.repository.SerieRepository;
+import br.com.sgce.service.FrequenciaService;
 import br.com.sgce.util.jsf.FacesUtil;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class PesquisaAlunoBean implements Serializable {
+public class FrequenciaBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
@@ -25,14 +25,20 @@ public class PesquisaAlunoBean implements Serializable {
     private AlunoRepository alunoRepository;
     private AlunoFilter filtro;
     private List<Aluno> alunosFiltrados;
+    private FrequenciaService frequenciaService;
+    private Frequencia frequencia;
     private List<Serie> listaSeries;
 
-    public PesquisaAlunoBean() {
-        filtro = new AlunoFilter();
-        alunosFiltrados = new ArrayList<>();
+    public FrequenciaBean() {        
+        frequencia = new Frequencia();
+        filtro = new AlunoFilter();                
     }
 
-    //Botao pesquisar
+    public void salvar() {
+        this.frequencia = frequenciaService.salvar(this.frequencia);
+        FacesUtil.addInfoMessage("Chamada OK!");
+    }
+
     public void pesquisar() {
         alunosFiltrados = alunoRepository.filtrados(filtro);
 
@@ -44,11 +50,11 @@ public class PesquisaAlunoBean implements Serializable {
             listaSeries = serieRepository.buscarSerie();
         }
     }
-    
-/*    public StatusAluno[] getStatusAlu(){
-        return StatusAluno.values();
+
+    public Frequencia getFrequencia() {
+        return frequencia;
     }
-*/
+
     public AlunoFilter getFiltro() {
         return filtro;
     }

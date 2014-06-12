@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,6 +35,8 @@ public class Aluno implements Serializable {
     private String complemento;
     private Estado estado;
     private Cidade cidade;
+    private Serie serie;
+  //  private StatusAluno statusAluno;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -120,8 +124,8 @@ public class Aluno implements Serializable {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
-    }    
-    
+    }
+
     @NotBlank
     @Column(length = 50, nullable = false)
     public String getComplemento() {
@@ -156,6 +160,28 @@ public class Aluno implements Serializable {
         this.cidade = cidade;
     }
 
+    @ManyToOne
+    @ForeignKey(name = "SerieAluno")
+    @JoinColumn(name = "serie_id")
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
+ /*   @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 10)
+    public StatusAluno getStatusAluno() {
+        return statusAluno;
+    }
+
+    public void setStatusAluno(StatusAluno statusAluno) {
+        this.statusAluno = statusAluno;
+    }
+*/
     @Override
     public int hashCode() {
         int hash = 3;

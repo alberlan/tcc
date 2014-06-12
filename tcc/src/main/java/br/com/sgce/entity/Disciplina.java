@@ -24,7 +24,7 @@ public class Disciplina implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private String descricao;
-    private List<Turma> turmas = new ArrayList<>();
+    private List<Serie> series = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,23 +47,24 @@ public class Disciplina implements Serializable {
     }
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "turma_disciplina",
+    @JoinTable(name = "serie_disciplina",
             joinColumns = @JoinColumn(name = "id_disciplina"),
-            inverseJoinColumns = @JoinColumn(name = "id_turma"))
-    public List<Turma> getTurmas() {
-        return turmas;
+            inverseJoinColumns = @JoinColumn(name = "id_serie"))
+    public List<Serie> getSeries() {
+        return series;
     }
 
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
+    public void setSeries(List<Serie> series) {
+        this.series = series;
     }
-
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
+
+    
 
     @Override
     public boolean equals(Object obj) {

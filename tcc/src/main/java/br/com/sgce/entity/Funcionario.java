@@ -1,18 +1,24 @@
 package br.com.sgce.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Email;
@@ -36,6 +42,9 @@ public class Funcionario implements Serializable {
     private TipoFuncionario tipoFuncionario;
     private Estado estado;
     private Cidade cidade;
+    private Usuario usuario;
+    private List<Serie> series = new ArrayList<>();
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -160,12 +169,35 @@ public class Funcionario implements Serializable {
         this.cidade = cidade;
     }
 
+    @OneToOne(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "UsuarioFuncionario")
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "serie_professor",
+            joinColumns = @JoinColumn(name = "id_funcionario"),
+            inverseJoinColumns = @JoinColumn(name = "id_serie"))
+    public List<Serie> getSeries() {
+        return series;
+    }
+
+    public void setSeries(List<Serie> series) {
+        this.series = series;
+    }
+   
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
+    
 
     @Override
     public boolean equals(Object obj) {

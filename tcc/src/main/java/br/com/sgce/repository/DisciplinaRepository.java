@@ -57,4 +57,10 @@ public class DisciplinaRepository implements Serializable {
         return manager.createQuery("from Disciplina", Disciplina.class).getResultList();
 
     }
+
+    public Disciplina porId(Long id) {
+        return manager.find(Disciplina.class, id);
+    }
+
+    
 }

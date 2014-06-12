@@ -7,7 +7,8 @@
 
     <ui:define name="titulo">Pesquisa de Aluno</ui:define>
 
-    <ui:define name="corpo">
+    <ui:define name="corpo">        
+
         <h:form>
             <h1>Pesquisa de Aluno</h1>
 
@@ -24,9 +25,12 @@
             <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
                          columnClasses="rotulo, campo">
 
-                <p:outputLabel value="Aluno" />
-                <p:inputText size="40" value="#{pesquisaAlunoBean.filtro.nome}"/> 
+                <p:outputLabel value="Série" />
+                <p:inputText size="13" value="#{pesquisaAlunoBean.filtro.serie}"/> 
 
+                <p:outputLabel value="Aluno" />
+                <p:inputText size="30" value="#{pesquisaAlunoBean.filtro.nome}"/> 
+                
             </p:panelGrid>
 
             <p:dataTable id="alunosTable" value="#{pesquisaAlunoBean.alunosFiltrados}" var="aluno" 
@@ -58,15 +62,16 @@
                     <h:outputText value="#{aluno.cidade.descricao}"/>
                 </p:column>
 
-                <p:column headerText="Bairro" style="width: 30px">
-                    <h:outputText value="#{aluno.bairro}"/>
+                <p:column headerText="Série" style="width: 30px">
+                    <h:outputText value="#{aluno.serie.descricao}"/>
                 </p:column>
+            
 
                 <p:column style="text-align: center; width: 30px">
                     <p:button outcome="/telas-sistema/telas-cadastros/cadastraraluno"
                               icon="ui-icon-pencil" title="Editar">
                         <f:param name="aluno" value="#{aluno.id}"/>                       
-                  
+
                     </p:button>
                 </p:column>
             </p:dataTable>

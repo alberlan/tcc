@@ -13,6 +13,7 @@
             <!-- Buscar parametro recebido na requisição  -->
             <o:viewParam name="aluno" value="#{alunoBean.aluno}" />
             <!-- Chamando o método inicializar cidade   -->
+            <f:event listener="#{alunoBean.inicializarSerie()}" type="preRenderView"/>    
             <f:event listener="#{alunoBean.inicializarCidade()}" type="preRenderView"/>    
             <f:event listener="#{alunoBean.inicializarEstado()}" type="preRenderView"/>  
         </f:metadata>    
@@ -73,6 +74,13 @@
                     <f:selectItems value="#{alunoBean.listaCidades}" var="cidade"
                                    itemValue="#{cidade}" itemLabel="#{cidade.descricao}" />                    
                 </p:selectOneMenu>
+
+                <p:outputLabel value="Serie" for="serie"/>
+                <p:selectOneMenu id="serie" value="#{alunoBean.aluno.serie}">
+                    <f:selectItem itemLabel="Selecione a Série"/>
+                    <f:selectItems value="#{alunoBean.listaSeries}" var="serie"
+                                   itemValue="#{serie}" itemLabel="#{serie.descricao}" />
+                </p:selectOneMenu>                
 
                 <p:outputLabel value="Endereço" for="endereco"/>
                 <p:inputText id="endereco" size="45" maxlength="47" 

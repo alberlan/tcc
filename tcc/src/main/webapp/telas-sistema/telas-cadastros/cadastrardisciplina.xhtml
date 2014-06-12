@@ -7,6 +7,7 @@
 
     <ui:define name="titulo">Nova Disciplina</ui:define>
     <ui:define name="corpo">
+        
         <h:form>
 
             <h1>Nova Disciplina</h1>
@@ -27,11 +28,11 @@
 
             <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
                          columnClasses="rotulo, campo">
+    
 
                 <p:outputLabel value="Descrição" for="descricao"/>
                 <p:inputText id="descricao" size="35" maxlength="40" 
                              value="#{disciplinaBean.disciplina.descricao}" />
-
 
             </p:panelGrid>
 

@@ -1,9 +1,12 @@
 package br.com.sgce.controller;
 
 import br.com.sgce.entity.Disciplina;
+import br.com.sgce.entity.Serie;
+import br.com.sgce.repository.SerieRepository;
 import br.com.sgce.service.DisciplinaService;
 import br.com.sgce.util.jsf.FacesUtil;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;

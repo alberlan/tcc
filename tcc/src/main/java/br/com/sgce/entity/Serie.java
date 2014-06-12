@@ -14,39 +14,31 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "turma")
-public class Turma implements Serializable {
+@Table(name = "serie")
+public class Serie implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Long id;
-    private String serie;
     private String descricao;
     private String turno;
+    private List<Aluno> alunos;
     private List<Disciplina> disciplinas = new ArrayList<>();
-    //   private List<MatricularAluno> matricularalnos = new ArrayList<>();
-
+    private List<Funcionario> funcionarios = new ArrayList<>();
+     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-     public Long getId() {
+    public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @NotBlank
-    @Column(length = 35, nullable = false)
-    public String getSerie() {
-        return serie;
-    }
-   
-    public void setSerie(String serie) {
-        this.serie = serie;
     }
 
     @NotBlank
@@ -69,10 +61,17 @@ public class Turma implements Serializable {
         this.turno = turno;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "turma_disciplina",
-            joinColumns = @JoinColumn(name = "id_turma"),
-            inverseJoinColumns = @JoinColumn(name = "id_disciplina"))
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ForeignKey(name = "SerieAluno")
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+    
+    @ManyToMany(mappedBy = "series", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
@@ -81,14 +80,15 @@ public class Turma implements Serializable {
         this.disciplinas = disciplinas;
     }
 
-    /*
-    public List<MatricularAluno> getMatricularalnos() {
-    return matricularalnos;
+    @ManyToMany(mappedBy = "series", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
     }
-    public void setMatricularalnos(List<MatricularAluno> matricularalnos) {
-    this.matricularalnos = matricularalnos;
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
     }
-     */
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -104,12 +104,10 @@ public class Turma implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Turma other = (Turma) obj;
+        final Serie other = (Serie) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-    
-    
 }

@@ -9,12 +9,12 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ifam" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/tcc" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="mix2314" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
                         
-                        <property name="hibernate.hbm2ddl.auto" value="update" />
+                        <property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 		</properties>

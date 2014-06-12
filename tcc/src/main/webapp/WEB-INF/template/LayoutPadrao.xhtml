@@ -38,7 +38,7 @@
                         <p:submenu label="Cadastros">
                             <p:menuitem value="Aluno" outcome="/telas-sistema/telas-cadastros/cadastraraluno" />
                             <p:menuitem value="Funcionário" outcome="/telas-sistema/telas-cadastros/cadastrarfuncionario" />
-                            <p:menuitem value="Turma" outcome="/telas-sistema/telas-cadastros/cadastrarturma"/>
+                            <p:menuitem value="Série" outcome="/telas-sistema/telas-cadastros/cadastrarserie"/>
                             <p:menuitem value="Disciplina" outcome="/telas-sistema/telas-cadastros/cadastrardisciplina"/>
                             <p:menuitem value="Bimestre" outcome="/telas-sistema/telas-cadastros/cadastrarbimestre"/>   
 
@@ -48,9 +48,8 @@
                         </p:submenu>
 
                         <p:submenu label="Professor">
-                            <p:menuitem value="Abrir Aula" outcome="/telas-sistema/professor/abriraula" />
-                            <p:menuitem value="Fechar Aula" outcome="/telas-sistema/professor/fecharaula" />
-                            <p:menuitem value="Lançar Nota" outcome="/telas-sistema/professor/lancarnota" />
+                            <p:menuitem value="Frenquencia" outcome="/telas-sistema/professor/frequencia" />
+                            <p:menuitem value="Lançar Nota" outcome="/telas-sistema/professor/lancarnota" />                            
                         </p:submenu>
 
                         <p:submenu label="Gerenciar">
@@ -69,7 +68,7 @@
                             <p:menuitem value="Histórico Escolar" outcome="/telas-sistema/relatorios/historico" />
                         </p:submenu>
 
-                        <p:menuitem value="Sair" />
+                        <p:menuitem value="Sair" url="/j_spring_security_logout"/>
                     </p:menubar>
                 </h:form>
             </div>

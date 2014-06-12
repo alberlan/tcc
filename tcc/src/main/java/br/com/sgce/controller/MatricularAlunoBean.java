@@ -3,7 +3,7 @@ package br.com.sgce.controller;
 import br.com.sgce.entity.Aluno;
 import br.com.sgce.entity.Disciplina;
 import br.com.sgce.entity.MatricularAluno;
-import br.com.sgce.entity.Turma;
+import br.com.sgce.entity.Serie;
 import br.com.sgce.repository.AlunoRepository;
 import br.com.sgce.repository.DisciplinaRepository;
 import br.com.sgce.service.MatricularAlunoService;
@@ -14,7 +14,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.sgce.repository.TurmaRepository;
+import br.com.sgce.repository.SerieRepository;
 
 @Named
 @ViewScoped
@@ -24,7 +24,7 @@ public class MatricularAlunoBean implements Serializable {
     @Inject
     private AlunoRepository alunoRepository;
     @Inject
-    private TurmaRepository turmas;
+    private SerieRepository serieRepository;
     @Inject
     private DisciplinaRepository disciplinaRepository;
     @Inject
@@ -32,7 +32,7 @@ public class MatricularAlunoBean implements Serializable {
     private MatricularAluno matricularAluno;
     private List<Aluno> alunoAlunos;
     private List<Disciplina> disciplinaAlunos;
-    private List<Turma> turmaAlunos;
+    private List<Serie> serieAlunos;
 
     public MatricularAlunoBean() {
         limpar();
@@ -51,7 +51,7 @@ public class MatricularAlunoBean implements Serializable {
     }
 
     public void inicializarTurma() {
-        turmaAlunos = turmas.buscarTurma();
+        serieAlunos = serieRepository.buscarSerie();
     }
 
     public void salvar() {
@@ -68,8 +68,8 @@ public class MatricularAlunoBean implements Serializable {
         return disciplinaAlunos;
     }
 
-    public List<Turma> getTurmaAlunos() {
-        return turmaAlunos;
+    public List<Serie> getSerieAlunos() {
+        return serieAlunos;
     }
 
     public MatricularAluno getMatricularAluno() {

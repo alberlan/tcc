@@ -1,9 +1,9 @@
 package br.com.sgce.controller;
 
 import br.com.sgce.entity.Disciplina;
-import br.com.sgce.entity.Turma;
+import br.com.sgce.entity.Serie;
 import br.com.sgce.repository.DisciplinaRepository;
-import br.com.sgce.service.TurmaService;
+import br.com.sgce.service.SerieService;
 import br.com.sgce.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -13,36 +13,38 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class TurmaBean implements Serializable {
+public class SerieBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
     private DisciplinaRepository disciplinaRepository;
     @Inject
-    private TurmaService turmaService;
-    private Turma turma;
-    private List<Disciplina> disciplinaAlunos;
+    private SerieService serieService;
+    private Serie serie;
+    private List<Disciplina> disciplinaAlunos;  
 
-    public TurmaBean() {
+    public SerieBean() {
         limpar();
     }
 
     public void limpar() {
-        turma = new Turma();
+        serie = new Serie();
     }
 
     public void inicializarDisciplina() {
-        disciplinaAlunos = disciplinaRepository.buscarDisciplina();
+        if (FacesUtil.isNotPostback()) {
+            disciplinaAlunos = disciplinaRepository.buscarDisciplina();
+        }
     }
 
-    public void salvar() {
-        this.turma = turmaService.salvar(this.turma);
-        FacesUtil.addInfoMessage("Turma Salva com Sucesso!");
+    public void salvar() {        
+        this.serie = serieService.salvar(this.serie);
+        FacesUtil.addInfoMessage("Série Salva com Sucesso!");
         limpar();
     }
 
-    public Turma getTurma() {
-        return turma;
+    public Serie getSerie() {
+        return serie;
     }
 
     public List<Disciplina> getDisciplinaAlunos() {

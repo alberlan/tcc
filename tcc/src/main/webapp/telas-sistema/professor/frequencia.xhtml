@@ -5,23 +5,23 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Abrir Aula</ui:define>
+    <ui:define name="titulo">Frequencia</ui:define>
 
     <ui:define name="corpo">
 
         <f:metadata>   
             <!-- Chamando o método inicializar Turma   -->              
-            <f:event listener="#{frequenciaBean.inicializarTurma()}" type="preRenderView"/>  
+            <f:event listener="#{frequenciaBean.inicializarSerie()}" type="preRenderView"/>  
         </f:metadata>          
 
         <h:form>
-            <h1>Abrir Aula</h1>
+            <h1>Frequencia</h1>
 
             <p:growl autoUpdate="true"/>
 
             <p:toolbar style="margin-top: 20px">
                 <p:toolbarGroup>
-                    <p:commandButton value="Frequencia" action="#{frequenciaBean.abrirAula()}" 
+                    <p:commandButton value="Frequencia" action="#{frequenciaBean.pesquisar()}" 
                                      update="@form"/>
                 </p:toolbarGroup>   
 
@@ -33,27 +33,20 @@
             </p:toolbar>
 
             <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-                         columnClasses="rotulo, campo">
+                         columnClasses="rotulo, campo">               
 
-                <p:outputLabel value="Turma" for="turma"/>
-                <p:selectOneMenu id="turma">
-                    <f:selectItem itemLabel="Selecione a Turma"/>
-                    <f:selectItems value="#{frequenciaBean.listaTurmas}" var="turma"
-                                   itemValue="#{turma}" itemLabel="#{turma.descricao}" />
+                <p:outputLabel value="Serie" for="serie"/>
+                <p:selectOneMenu id="serie" value="#{frequenciaBean.frequencia.teste}">
+                    <f:selectItem itemLabel="Selecione a Serie"/>
+                    <f:selectItems value="#{frequenciaBean.listaSeries}" var="serie"
+                                   itemValue="#{serie}" itemLabel="#{serie.descricao}" />
                 </p:selectOneMenu>
-
+                
                 <p:outputLabel value="Turno" for="turno"/>
                 <p:selectOneMenu id="turno">
                     <f:selectItem itemLabel="Selecione o Turno"/>
-                    <f:selectItems value="#{frequenciaBean.listaTurmas}" var="turma"
-                                   itemValue="#{turma}" itemLabel="#{turma.turno}" />
-                </p:selectOneMenu>
-
-                <p:outputLabel value="Serie" for="serie"/>
-                <p:selectOneMenu id="serie">
-                    <f:selectItem itemLabel="Selecione a Serie"/>
-                    <f:selectItems value="#{frequenciaBean.listaTurmas}" var="turma"
-                                   itemValue="#{turma}" itemLabel="#{turma.serie}" />
+                    <f:selectItems value="#{frequenciaBean.listaSeries}" var="serie"
+                                   itemValue="#{serie}" itemLabel="#{serie.turno}" />
                 </p:selectOneMenu>
 
             </p:panelGrid>
@@ -69,7 +62,7 @@
                 </p:column>
 
                 <p:column headerText="Frequencia" style="text-align: left; width: 5px">                  
-                    <p:selectOneRadio value="#{frequenciaBean.frequencia.frequencia}" id="chamada" >                                                   
+                    <p:selectOneRadio value="#{frequenciaBean.frequencia.teste}" id="chamada" >                                                   
                         <f:selectItem itemValue="P" itemLabel="P"  />  
                         <f:selectItem itemValue="F" itemLabel="F"  />                          
                     </p:selectOneRadio> 

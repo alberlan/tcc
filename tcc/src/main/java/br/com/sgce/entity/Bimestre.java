@@ -1,4 +1,3 @@
-
 package br.com.sgce.entity;
 
 import java.io.Serializable;
@@ -14,10 +13,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.validator.constraints.NotBlank;
 
-
 @Entity
 @Table(name = "bimestre")
-public class Bimestre implements Serializable{
+public class Bimestre implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private Long id;
     private String descricao;
     private Date dataInicial;
@@ -25,7 +25,7 @@ public class Bimestre implements Serializable{
 
     public Bimestre() {
     }
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -89,6 +89,4 @@ public class Bimestre implements Serializable{
         }
         return true;
     }
-    
-        
 }
