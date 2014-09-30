@@ -1,31 +1,37 @@
-
 package teste;
 
 import br.com.sgce.entity.Disciplina;
 import br.com.sgce.entity.Serie;
-import br.com.sgce.repository.DisciplinaRepository;
-import java.io.Serializable;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
+public class teste {
 
-public class teste implements Serializable{
-    private static final long serialVersionUID = 1L;
-    @Inject
-    private EntityManager manager;
-    private DisciplinaRepository disciplinaRepository;
-    
-/*    public static void main(String[] args){
+    public static void main(String[] args) {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("SgcePU");
+        EntityManager manager = factory.createEntityManager();
+        EntityTransaction trx = manager.getTransaction();
+        trx.begin();
+
+        // atribuicoes de disciplina
         Disciplina disciplina = new Disciplina();
-// atribuicoes de disciplina
-disciplina = manager.merge(disciplina);
+        disciplina.setId(Long.MIN_VALUE);
+        disciplina.setDescricao("ops");
+        disciplina = manager.merge(disciplina);
+        // atribuicoes de serie
+        Serie serie = new Serie();
+        serie.setId(Long.MIN_VALUE);
+        serie.setDescricao("10 SERIE");
+        serie.setTurno("t");
+        serie.getDisciplinas().add(disciplina);
 
-Serie s = new Serie();
-// atribuicoes da turma
+        serie = manager.merge(serie);
 
-s.getDisciplinas().add(disciplina);
+        trx.commit();
 
-s = manager.merge(s);
+        manager.close();
+
     }
-    */
 }

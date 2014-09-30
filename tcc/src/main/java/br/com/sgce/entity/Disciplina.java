@@ -46,7 +46,7 @@ public class Disciplina implements Serializable {
         this.descricao = descricao;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "serie_disciplina",
             joinColumns = @JoinColumn(name = "id_disciplina"),
             inverseJoinColumns = @JoinColumn(name = "id_serie"))

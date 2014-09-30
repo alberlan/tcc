@@ -11,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,7 +20,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "serie")
 public class Serie implements Serializable {
-
+ 
     private static final long serialVersionUID = 1L;
     private Long id;
     private String descricao;
@@ -61,7 +59,7 @@ public class Serie implements Serializable {
         this.turno = turno;
     }
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.PERSIST , fetch = FetchType.LAZY)
     @ForeignKey(name = "SerieAluno")
     public List<Aluno> getAlunos() {
         return alunos;

@@ -12,7 +12,7 @@
         <f:metadata>   
             <!-- Buscar parametro recebido na requisição  -->
             <o:viewParam name="aluno" value="#{alunoBean.aluno}" />
-            <!-- Chamando o método inicializar cidade   -->
+            <!-- Antes da pagina ser renderizada Chama os métodos inicializar serie, cidade e estado   --> 
             <f:event listener="#{alunoBean.inicializarSerie()}" type="preRenderView"/>    
             <f:event listener="#{alunoBean.inicializarCidade()}" type="preRenderView"/>    
             <f:event listener="#{alunoBean.inicializarEstado()}" type="preRenderView"/>  

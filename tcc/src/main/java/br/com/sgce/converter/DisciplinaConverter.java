@@ -1,30 +1,31 @@
+
 package br.com.sgce.converter;
 
-import br.com.sgce.entity.Cidade;
-import br.com.sgce.repository.CidadeRepository;
+import br.com.sgce.entity.Disciplina;
+import br.com.sgce.repository.DisciplinaRepository;
 import br.com.sgce.util.cdi.CDIServiceLocator;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
 
-@FacesConverter(forClass = Cidade.class)
-public class CidadeConverter implements Converter {
 
-     @Inject
-    private CidadeRepository cidadeRepository;
 
-    public CidadeConverter() {
-        cidadeRepository = CDIServiceLocator.getBean(CidadeRepository.class);
+@FacesConverter(value = "disciplinaConverter" , forClass = Disciplina.class)
+public class DisciplinaConverter implements Converter{
+    
+    private DisciplinaRepository disciplinaRepository;
+
+    public DisciplinaConverter() {
+        disciplinaRepository = CDIServiceLocator.getBean(DisciplinaRepository.class);
     }
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        Cidade retorno = null;
+        Disciplina retorno = null;
         if (value != null) {
             Long id = new Long(value);
-            retorno = cidadeRepository.porId(id);
+            retorno = disciplinaRepository.porId(id);
         }
 
         return retorno;
@@ -34,10 +35,13 @@ public class CidadeConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
 
         if (value != null) {
-            return ((Cidade) value).getId().toString();
+            Disciplina disciplina = (Disciplina) value;
+            return disciplina.getId() == null ? null : disciplina.getId().toString();
         }
 
         return "";
 
     }
+    
+    
 }

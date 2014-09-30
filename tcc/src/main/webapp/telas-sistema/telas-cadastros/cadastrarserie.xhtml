@@ -7,12 +7,15 @@
 
     <ui:define name="titulo">Nova Série</ui:define>
     <ui:define name="corpo">
-        
-        <f:metadata>               
-            <!-- Chamando o método inicializar cidade   -->           
+
+        <f:metadata>  
+            <!-- Recurso usado para evitar consultas desnecessarios   --> 
+            <f:viewParam name="dummy"/>
+
+            <!-- Antes da pagina ser renderizada Chama o método inicializar cidade   -->           
             <f:event listener="#{serieBean.inicializarDisciplina()}" type="preRenderView"/>  
         </f:metadata>
-        
+
         <h:form>
 
             <h1>Nova Série</h1>
@@ -50,9 +53,9 @@
                 </p:selectOneRadio> 
 
                 <p:outputLabel value="Disciplina"/>
-                <p:selectCheckboxMenu  label="Disciplinas" filter="true" 
+                <p:selectCheckboxMenu  label="Disciplinas" filter="true" converter="disciplinaConverter" value="#{serieBean.serie.disciplinas}"
                                        filterMatchMode="startsWith" panelStyle="width:220px">
-                    <f:selectItems value="#{serieBean.disciplinaAlunos}" var="disciplina"
+                    <f:selectItems value="#{serieBean.disciplinaSeries}" var="disciplina"
                                    itemValue="#{disciplina}" itemLabel="#{disciplina.descricao}"/>
                 </p:selectCheckboxMenu>   
 

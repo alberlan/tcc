@@ -3,6 +3,7 @@ package br.com.sgce.controller;
 import br.com.sgce.entity.Disciplina;
 import br.com.sgce.entity.Serie;
 import br.com.sgce.repository.DisciplinaRepository;
+import br.com.sgce.service.DisciplinaService;
 import br.com.sgce.service.SerieService;
 import br.com.sgce.util.jsf.FacesUtil;
 import java.io.Serializable;
@@ -21,7 +22,7 @@ public class SerieBean implements Serializable {
     @Inject
     private SerieService serieService;
     private Serie serie;
-    private List<Disciplina> disciplinaAlunos;  
+    private List<Disciplina> disciplinaSeries;
 
     public SerieBean() {
         limpar();
@@ -32,12 +33,14 @@ public class SerieBean implements Serializable {
     }
 
     public void inicializarDisciplina() {
+
+        System.out.println("Inicializando");
         if (FacesUtil.isNotPostback()) {
-            disciplinaAlunos = disciplinaRepository.buscarDisciplina();
+            disciplinaSeries = disciplinaRepository.buscarDisciplina();
         }
     }
 
-    public void salvar() {        
+    public void salvar() {
         this.serie = serieService.salvar(this.serie);
         FacesUtil.addInfoMessage("Série Salva com Sucesso!");
         limpar();
@@ -47,7 +50,7 @@ public class SerieBean implements Serializable {
         return serie;
     }
 
-    public List<Disciplina> getDisciplinaAlunos() {
-        return disciplinaAlunos;
+    public List<Disciplina> getDisciplinaSeries() {
+        return disciplinaSeries;
     }
 }

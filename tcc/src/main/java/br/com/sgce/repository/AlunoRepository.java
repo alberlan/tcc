@@ -15,7 +15,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-@Named
+//Camada de persistencia no banco de dados
 public class AlunoRepository implements Serializable {
 
     private static final long serialVersionUID = 1L;

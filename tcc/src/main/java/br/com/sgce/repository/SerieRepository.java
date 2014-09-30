@@ -13,18 +13,22 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-
+//Camada de persistencia no banco de dados
 public class SerieRepository implements Serializable{
     
     private static final long serialVersionUID = 1L;
     @Inject
-    private EntityManager manager;    
-
+    private EntityManager manager;   
+    
+       
+    // guarda no banco de dados
     public Serie guardar(Serie serie) {        
         return manager.merge(serie);
 
     }
 
+    //busca uma serie pela descriçao no banco de dados
+    //utilizando Jpql nessa consulta, aqui é feita aconsulta por Entidade que fiz mapeamento
     public Serie porDescricao(String descricao) {
         try {
             return manager.createQuery("from Serie where upper(descricao) = :descricao", Serie.class)
@@ -34,12 +38,13 @@ public class SerieRepository implements Serializable{
             return null;
         }
     }
-    
+    //Carrega lista com todas as series, é utilizada na tela de cadastro de alunos
     public List<Serie> buscarSerie(){        
         return manager.createQuery("from Serie" , Serie.class).getResultList();
         
     }  
 
+    //busca serie por id no banco de dados
     public Serie porId(Long id) {
         return manager.find(Serie.class, id);
     }
@@ -50,7 +55,7 @@ public class SerieRepository implements Serializable{
          criteria.add(Restrictions.eq("Serie", serie.getId()));
          Aluno aluno = (Aluno) criteria.uniqueResult();
          return aluno.getSerie(); 
-            //    .createAlias("Serie", "t"); //criando um criterio para entidade Serie.
+           
                        
     }
     

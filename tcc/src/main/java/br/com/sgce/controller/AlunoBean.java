@@ -52,6 +52,7 @@ public class AlunoBean implements Serializable {
         return this.aluno.getId() != null;
     }
 
+    //Carrega uma lista de Estados na tela de cadastro de alunos
     public void inicializarEstado() {
         //Evitar consultas desnecessárias apartir da segunda vez é postback
         if (FacesUtil.isNotPostback()) {
@@ -59,12 +60,15 @@ public class AlunoBean implements Serializable {
         }
     }
 
+    //Carrega uma lista de Cidades na tela de cadastro de alunos
     public void inicializarCidade() {
         //Evitar consultas desnecessárias apartir da segunda vez é postback
         if (FacesUtil.isNotPostback()) {
             listaCidades = cidadeReoRepository.buscarCidade();
         }
     }
+    
+    //Carrega uma lista de serie na tela de cadastro de alunos.
     public void inicializarSerie() {
         //Evitar consultas desnecessárias apartir da segunda vez é postback
         if (FacesUtil.isNotPostback()) {

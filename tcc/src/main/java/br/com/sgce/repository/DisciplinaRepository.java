@@ -14,6 +14,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+//Camada de persistencia de dados
 public class DisciplinaRepository implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -7,7 +7,7 @@ import br.com.sgce.util.jpa.Transactional;
 import java.io.Serializable;
 import javax.inject.Inject;
 
-
+//Classe Responsavel pela regra de negocio
 public class SerieService implements Serializable{
     
     private static final long serialVersionUID = 1L;
