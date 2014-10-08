@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +22,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "serie")
 public class Serie implements Serializable {
- 
+
     private static final long serialVersionUID = 1L;
     private Long id;
     private String descricao;
@@ -28,7 +30,7 @@ public class Serie implements Serializable {
     private List<Aluno> alunos;
     private List<Disciplina> disciplinas = new ArrayList<>();
     private List<Funcionario> funcionarios = new ArrayList<>();
-     
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -59,7 +61,7 @@ public class Serie implements Serializable {
         this.turno = turno;
     }
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.PERSIST , fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ForeignKey(name = "SerieAluno")
     public List<Aluno> getAlunos() {
         return alunos;
@@ -68,8 +70,11 @@ public class Serie implements Serializable {
     public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
     }
-    
-    @ManyToMany(mappedBy = "series", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "serie_disciplina",
+            joinColumns = @JoinColumn(name = "id_serie"),
+            inverseJoinColumns = @JoinColumn(name = "id_disciplina"))
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
@@ -78,7 +83,10 @@ public class Serie implements Serializable {
         this.disciplinas = disciplinas;
     }
 
-    @ManyToMany(mappedBy = "series", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "serie_professor",
+            joinColumns = @JoinColumn(name = "id_serie"),
+            inverseJoinColumns = @JoinColumn(name = "id_funcionario"))
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
@@ -86,7 +94,7 @@ public class Serie implements Serializable {
     public void setFuncionarios(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 5;

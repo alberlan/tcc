@@ -190,14 +190,15 @@ public class Funcionario implements Serializable {
     public void setSeries(List<Serie> series) {
         this.series = series;
     }
-   
+
+    
+
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
-    
 
     @Override
     public boolean equals(Object obj) {

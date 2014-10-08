@@ -1,6 +1,7 @@
 package br.com.sgce.repository;
 
 import br.com.sgce.entity.Funcionario;
+import br.com.sgce.entity.TipoFuncionario;
 import br.com.sgce.filter.FuncionarioFilter;
 import java.io.Serializable;
 import java.util.List;
@@ -42,12 +43,16 @@ public class FuncionarioRepository implements Serializable {
         Session session = manager.unwrap(Session.class); //Pedindo pro manager desempacotar a session do hibernate, e joga na variavel session.
         Criteria criteria = session.createCriteria(Funcionario.class); //criando um criterio para entidade Aluno.
 
-
         if (StringUtils.isNotBlank(filtro.getNome())) {
             criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
         }
 
         return criteria.addOrder(Order.asc("nome")).list();
+    }
+
+    public List<Funcionario> buscarProfessor() {
+        return manager.createQuery("from Funcionario funcionario"
+                + " where funcionario = 'PROFESSOR'").getResultList();
     }
 
     public List<Funcionario> buscarFuncionario() {

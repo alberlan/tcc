@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(forClass = Serie.class)
+@FacesConverter(value = "serieConverter",forClass = Serie.class)
 public class SerieConverter implements Converter{
     
     private SerieRepository serieRepository;

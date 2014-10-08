@@ -8,7 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(forClass = Funcionario.class)
+@FacesConverter(value = "funcionarioConverter",forClass = Funcionario.class)
 public class FuncionarioConverter implements Converter {
 
     private FuncionarioRepository funcionarioRepository;

@@ -52,10 +52,6 @@ public class FuncionarioBean implements Serializable {
         limpar();
     }
 
-    public void alocarProfessor() {
-        //falta implementar
-    }
-
     public boolean editar() {
         return this.funcionario.getId() != null;
     }
@@ -98,7 +94,7 @@ public class FuncionarioBean implements Serializable {
 
     public List<Funcionario> getListaFuncionarios() {
         return listaFuncionarios;
-    }     
+    }
 
     public Funcionario getFuncionario() {
         return funcionario;
@@ -111,4 +107,5 @@ public class FuncionarioBean implements Serializable {
     public TipoFuncionario[] getTiposFuncionario() {
         return TipoFuncionario.values();
     }
+
 }

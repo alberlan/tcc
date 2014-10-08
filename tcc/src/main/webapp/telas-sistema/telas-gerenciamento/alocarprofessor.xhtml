@@ -7,21 +7,22 @@
 
     <ui:define name="titulo">Alocar Professor</ui:define>
     <ui:define name="corpo">
-        
+
         <f:metadata>               
-            <!-- Chamando o método inicializar cidade   -->           
-            <f:event listener="#{funcionarioBean.inicializarSerie()}" type="preRenderView"/>  
+            <!-- Chamando o método inicializar cidade   -->  
             <f:event listener="#{funcionarioBean.inicializarFuncionario()}" type="preRenderView"/>  
+            <f:event listener="#{funcionarioBean.inicializarSerie()}" type="preRenderView"/>  
+
         </f:metadata>
-        
+
         <h:form>
 
             <h1>Alocar Professor</h1>
             <p:growl autoUpdate="true"/>
-            
+
             <p:toolbar style="margin-top: 10px">
                 <p:toolbarGroup>                    
-                    <p:commandButton value="Salvar" id="botaoSalvar" 
+                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{funcionarioBean.salvar()}" 
                                      update="@form"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
@@ -30,20 +31,27 @@
             </p:toolbar>
 
             <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-                         columnClasses="rotulo, campo">        
+                         columnClasses="rotulo, campo" >        
+            
                 
-                <p:outputLabel value="Professor" for="professor"/>
-                <p:selectOneMenu id="professor" value="#{funcionarioBean.funcionario.nome}" >
-                    <f:selectItem itemLabel="Selecione o Professor"/>
+                <p:outputLabel for="professor" value="Professor:"  />
+                <p:selectOneMenu id="professor" value="#{funcionarioBean.funcionario}" converter="funcionarioConverter" 
+                                 panelStyle="width:180px" effect="fade" var="fun" style="width:320px" filter="true" 
+                                 filterMatchMode="startsWith">
                     <f:selectItems value="#{funcionarioBean.listaFuncionarios}" var="professor"
-                                   itemValue="#{professor}" itemLabel="#{professor.nome}" />                    
+                                   itemLabel="#{professor.nome}" itemValue="#{professor}"  />           
+                    
+                    <p:column style="width:10%">
+                        <h:outputText value="#{fun.nome}" />
+                    </p:column>                    
                 </p:selectOneMenu>
-                
-                <p:outputLabel value="Série"/>
-                <p:selectCheckboxMenu  label="Séries" filter="true" 
+
+                <p:outputLabel value="Séries:"  />
+                <p:selectCheckboxMenu  label="Séries" filter="true"  converter="serieConverter" 
+                                       value="#{funcionarioBean.funcionario.series}"
                                        filterMatchMode="startsWith" panelStyle="width:220px">
                     <f:selectItems value="#{funcionarioBean.listaSeries}" var="serie"
-                                   itemValue="#{serie}" itemLabel="#{serie.descricao}"/>
+                                   itemValue="#{serie}" itemLabel="#{serie.descricao}" />
                 </p:selectCheckboxMenu>   
 
             </p:panelGrid>
