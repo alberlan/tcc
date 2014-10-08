@@ -46,7 +46,7 @@ public class Bimestre implements Serializable {
         this.descricao = descricao;
     }
 
-    @NotBlank
+   // @NotBlank
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     public Date getDataInicial() {
@@ -57,7 +57,7 @@ public class Bimestre implements Serializable {
         this.dataInicial = dataInicial;
     }
 
-    @NotBlank
+    //@NotBlank
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     public Date getDataFinal() {

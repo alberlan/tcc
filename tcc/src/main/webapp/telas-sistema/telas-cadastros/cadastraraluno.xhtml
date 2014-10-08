@@ -39,10 +39,12 @@
 
                 <p:outputLabel value="Nome" for="nome"/>
                 <p:inputText id="nome" size="47" maxlength="47" 
+                             onkeyup="this.value = this.value.toUpperCase();"
                              value="#{alunoBean.aluno.nome}"/>
 
                 <p:outputLabel value="Responsável" for="responsavel"/>
                 <p:inputText id="responsavel" size="47" maxlength="47" 
+                             onkeyup="this.value = this.value.toUpperCase();"
                              value="#{alunoBean.aluno.responsavel}"/>
 
                 <p:outputLabel value="E-mail" for="email"/>
@@ -84,14 +86,17 @@
 
                 <p:outputLabel value="Endereço" for="endereco"/>
                 <p:inputText id="endereco" size="45" maxlength="47" 
+                             onkeyup="this.value = this.value.toUpperCase();"
                              value="#{alunoBean.aluno.endereco}"/>    
 
                 <p:outputLabel value="Bairro" for="bairro"/>
                 <p:inputText id="bairro" size="40" maxlength="40"
+                             onkeyup="this.value = this.value.toUpperCase();"
                              value="#{alunoBean.aluno.bairro}"/> 
 
                 <p:outputLabel value="Complemento" for="complemento"/>
                 <p:inputText id="complemento" size="45" maxlength="47" 
+                             onkeyup="this.value = this.value.toUpperCase();"
                              value="#{alunoBean.aluno.complemento}"/>       		
             </p:panelGrid>  	        
 

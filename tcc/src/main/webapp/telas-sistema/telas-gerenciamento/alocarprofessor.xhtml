@@ -39,8 +39,9 @@
                                  panelStyle="width:180px" effect="fade" var="fun" style="width:320px" filter="true" 
                                  filterMatchMode="startsWith">
                     <f:selectItems value="#{funcionarioBean.listaFuncionarios}" var="professor"
-                                   itemLabel="#{professor.nome}" itemValue="#{professor}"  />           
+                                   itemLabel="#{professor.nome}" itemValue="#{professor}"  />    
                     
+                    <!-- Carrega os usuarios-->
                     <p:column style="width:10%">
                         <h:outputText value="#{fun.nome}" />
                     </p:column>                    
